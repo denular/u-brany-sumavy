@@ -80,6 +80,14 @@
 	@apply focus:outline-green;
 }
 
+#Params li {
+	@apply flex justify-between first:border-t border-b border-green pt-[1.5em] pb-[1.5em] px-5
+}
+
+#Params li span {
+	@apply first:font-semibold
+}
+
 [data-linkarea] {
 	position: relative;
 }
