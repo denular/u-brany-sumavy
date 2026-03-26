@@ -1,0 +1,7 @@
+---
+import { twMerge } from "tailwind-merge";
+
+const { classList } = Astro.props;
+---
+
+<div class={twMerge(classList, "locale-button")}>CZ</div>

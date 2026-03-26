@@ -1,0 +1,29 @@
+@layer components {
+	.link-button {
+		@apply border rounded-full w-max h-[1em] py-[1em] px-[1.5em] font-medium;
+		@apply flex text-nowrap text-center items-center justify-center gap-10;
+		@apply hover:cursor-pointer;
+	}
+
+	.hover-dark {
+		@apply text-black border-green hover:bg-black hover:border-black hover:text-green;
+	}
+
+	.hover-light {
+		@apply text-white border-green hover:bg-green;
+	}
+
+	.link-button .link-arrow {
+		@apply text-green text-[1.4em]
+	}
+
+	.hover-light:hover .link-arrow {
+		@apply text-white
+	}
+
+	.locale-button {
+		@apply border rounded-full size-[1em] p-[1em];
+		@apply flex text-center items-center justify-center;
+		@apply hover:cursor-pointer;
+	}
+}

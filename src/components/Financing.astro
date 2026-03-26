@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import buildRect from "../assets/Image_asset_764x535_2x.jpg";
+---
+
+<section id="Financing" class="mx-[4vw] mt-25 flex flex-col gap-20">
+	<div class="grid grid-flow-col grid-cols-[45%_55%] items-center">
+		<div class="px-[20%]">
+			<h2>KOUPĚ &#38; FINANCOVÁNÍ</h2>
+			<p>
+				Koupě bytu probíhá v několika jednoduchých krocích &ndash; od
+				rezervace jednotky přes uzavření smlouvy o smlouvě budoucí až po
+				podpis kupní smlouvy a převod do osobního vlastnictví po
+				dokončení projektu. Součástí každé jednotky je také podíl na
+				společných částech domu a sklepní kóje. Financování je možné z
+				vlastních zdrojů nebo hypotečním úvěrem. V případě zájmu vám
+				pomůžeme zajistit vhodné řešení ve spoluprácí s ověřenými
+				finančními partnery.
+			</p>
+		</div>
+		<Image src={buildRect} alt="Pohled na objekt" />
+	</div>
+	<div>
+		<h2 class="px-[4vw] mb-[1em]">JAK PROBÍHÁ KOUPĚ</h2>
+		<div class="text-darkgreen">
+			<div class="purchStep">
+				<h4>Ústní rezervace</h4>
+				<p>
+					Po výběru apartmánu nás kontaktujte. Zajistíme jeho
+					rezervaci a přípravíme potřebné podklady.
+				</p>
+			</div>
+			<div class="purchStep">
+				<h4>Rezervace a smluvní dokumentace</h4>
+				<p>
+					Po výběru apartmánu dochází k podpisu rezervační nebo
+					smluvní dokumentace. Tento krok zahrnuje úhradu zálohy dle
+					individuálně dohodnutých podmínek. Další průběh koupě vám
+					rádi představíme osobně.
+				</p>
+			</div>
+			<div class="purchStep">
+				<h4>Podpis smlouvy</h4>
+				<p>
+					Následuje podpis smlouvy a úhrada kupní ceny dle dohodnutých
+					podmínek.
+				</p>
+			</div>
+			<div class="purchStep">
+				<h4>Předání apartmánu</h4>
+				<p>
+					Po dokončení všech náležitostí vám předáme klíče k vašemu
+					novému apartmánu.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

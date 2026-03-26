@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@import "./theme.css";
+@import "./base.css";
+@import "./components.css";
+
+
+#headerMenu ul {
+	@apply grid grid-flow-col auto-cols-max justify-between text-center
+}
+
+#headerMenu li {
+	@apply relative inline-block hover:font-semibold hover:cursor-pointer text-nowrap
+}
+
+#headerMenu li a {
+	@apply before:content-[attr(data-text)] before:block before:font-bold before:h-0 before:invisible
+}
+
+#footerMenu ul {
+	@apply flex flex-col text-sm gap-[1em]
+}
+
+#footerMenu li {
+	@apply relative inline-block hover:font-semibold hover:cursor-pointer text-nowrap
+}
+
+#footerMenu li a {
+	@apply before:content-[attr(data-text)] before:block before:font-bold before:h-0 before:invisible
+}
+
+#Flats tr {
+	@apply border-b border-white last:border-green
+}
+
+#Flats th {
+	@apply pb-[1em] first:pl-2 last:pr-2
+}
+
+#Flats td {
+	@apply py-[2em]
+}
+
+#Flats tr:hover td {
+	@apply bg-gray border-y border-green transition duration-150
+}
+
+#Financing .purchStep {
+	@apply border-t border-green last:border-b;
+	@apply grid grid-cols-2 grid-flow-col px-[4vw] py-6;
+}
+
+#Financing .purchStep h4 {
+	@apply text-lg font-semibold
+}
+
+#Financing .purchStep p {
+	@apply font-light
+}
+
+#access h4 {
+	@apply text-green text-4xl font-semibold
+}
+
+#access h4 span {
+	@apply text-3xl font-medium
+}
+
+#access h4+span {
+	@apply text-sm font-light
+}
+
+#Contact fieldset label {
+	@apply w-full border-b border-green font-light;
+	@apply flex flex-col;
+}
+
+#Contact label :is(input, textarea) {
+	@apply focus:outline-green;
+}
+
+[data-linkarea] {
+	position: relative;
+}
+
+[data-link] {
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+	}
+}

@@ -1,0 +1,13 @@
+@theme {
+	--font-inter: "Inter", sans-serif;
+	--font-montserrat: "Montserrat", sans-serif;
+
+	--color-*: initial;
+
+	--color-green: #9faa87;
+	--color-darkgreen: #4e6b56;
+	--color-gray: #e8e6e3;
+
+	--color-white: #ffffff;
+	--color-black: #2d2d2c;
+}

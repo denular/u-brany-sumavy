@@ -1,0 +1,127 @@
+---
+import { Image } from "astro:assets";
+import floor_1pp from "../assets/build/building_front_filled_1pp.svg";
+import { flats } from "../data/flats.ts";
+
+const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
+---
+
+<section id="Flats" class="mx-[4vw] mt-25 flex flex-col gap-10">
+	<div class="grid grid-cols-2">
+		<h1 class="ml-[8%]">BYTY<br />A CENÍK</h1>
+		<p class="text-sm font-semibold">
+			Prohlédněte si aktuální nabídku apartmánů v projektu<br /> Apartmány U
+			Brány Šumavy
+		</p>
+	</div>
+	<div id="floorPlans" class="flex flex-col gap-20 items-center">
+		<Image src={floor_1pp} alt="Podlaží" />
+		<Image src={floor_1pp} alt="Půdorys" />
+		<div id="flatInfo" class="flex flex-col gap-10">
+			<h4 class="text-center text-green text-5xl font-light">
+				Ubytovací jednotka č. 1
+			</h4>
+			<div class="text-center text-green text-lg font-semibold">
+				<p>{flats[1].layout} {flats[1].area}m<sup>2</sup></p>
+				<p>{flats[1].price}</p>
+			</div>
+		</div>
+	</div>
+	<table id="flatsTable" class="w-full mt-10 text-center text-green">
+		<tr class="align-top text-black">
+			<th>Byt č.</th>
+			<th class="min-w-20.5">Podlaží</th>
+			<th class="flex flex-col items-center gap-1">
+				Dispozice
+				<select
+					id="layout-filter"
+					name="Dispozice"
+					class="w-[60%] min-w-fit border border-green text-sm font-medium"
+				>
+					<option selected value="All">Vše</option>
+					{
+						filterOptions.map((option) => (
+							<option value={option}>{option}</option>
+						))
+					}
+				</select>
+			</th>
+			<th class="min-w-41">Venkovní prostor</th>
+			<th>Sklep/komora</th>
+			<th>Orientace</th>
+			<th>Celková<br />plocha (m<sup>2</sup>)</th>
+			<th>Cena<br />příslušné DPH</th>
+		</tr>
+		{
+			flats.map((flat) => (
+				<tr
+					class="flatRow"
+					data-linkarea
+					data-layout={flat.layout}
+					class="p-200"
+				>
+					<td>
+						<a
+							data-link
+							href={"flats/".concat(flat.id.toString())}
+							class="font-bold"
+						>
+							{flat.id}
+						</a>
+					</td>
+					<td>{flat.floor}</td>
+					<td>{flat.layout}</td>
+					<td>{flat.outside}</td>
+					<td>{flat.cellar}</td>
+					<td>{flat.orientation}</td>
+					<td>{flat.area}</td>
+					<td>{flat.price}</td>
+				</tr>
+			))
+		}
+	</table>
+</section>
+
+<script>
+	import Layout from "../layouts/Layout.astro";
+
+	const selector = document.getElementById(
+		"layout-filter",
+	) as HTMLSelectElement;
+	const table = document.querySelectorAll("#flatsTable tr.flatRow");
+
+	const filterTable = () => {
+		const filter = selector.value;
+		console.log(filter);
+
+		table.forEach((row) => {
+			const layout = row.getAttribute("data-layout");
+			if (filter === "All" || filter === layout) {
+				row.classList.remove("hidden");
+			} else {
+				row.classList.add("hidden");
+			}
+		});
+	};
+
+	const showTable = () => {};
+
+	// const openNavigation = () => {
+	// 	navButton?.setAttribute("aria-expanded", "true");
+	// 	primaryNav?.classList.remove("hidden");
+	// 	overlay?.classList.remove("hidden");
+	// };
+
+	// const closeNavigation = () => {
+	// 	navButton?.setAttribute("aria-expanded", "false");
+	// 	primaryNav?.classList.add("hidden");
+	// 	overlay?.classList.add("hidden");
+	// };
+
+	// const toggleNavigation = () => {
+	// 	const open = navButton?.getAttribute("aria-expanded");
+	// 	open === "false" ? openNavigation() : closeNavigation();
+	// };
+
+	selector?.addEventListener("change", filterTable);
+</script>

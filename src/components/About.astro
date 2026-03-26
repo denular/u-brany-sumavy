@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import buildRect from "../assets/Image_asset_764x535_2x.jpg";
+import buildSquare from "../assets/Image_asset_764x700_2x.jpg";
+import LinkButton from "./LinkButton.astro";
+---
+
+<section id="About" class="mx-[4vw] mt-25 flex flex-col gap-20 items-center">
+	<h1 class="ml-[8%]">O PROJEKTU</h1>
+	<div class="grid grid-flow-col grid-cols-[55%_45%] items-center">
+		<Image
+			src={buildRect}
+			alt="Pohled na objekt"
+			class="max-h-[calc(80vh-144px)] object-cover"
+		/>
+		<div class="px-[20%]">
+			<h3>VAŠE MÍSTO NA ŠUMAVĚ</h3>
+			<p>
+				Apartmány U Brány Šumavy přinášejí moderní bydelní v klidném
+				prostředí jedné z nejkrásnějších obastí Šumavy. Projekt spojuje
+				kvalitní architekturu, přírodní charakter lokality a pohodlí
+				současného bydelní.
+			</p>
+		</div>
+	</div>
+	<div class="grid grid-flow-col grid-cols-[45%_55%] items-center">
+		<div class="px-[20%]">
+			<h3>KOMFORTNÍ BYDLENÍ V PŘÍRODĚ</h3>
+			<p>
+				Projekt Apartmány U Brány Šumavy nabízí ideální kombinaci
+				moderní architektury a klidného prostředí Šumavy. Bydlení je
+				navrženo s důrazem na komfort, funkčnost a maximální propojení s
+				okolní přírodou.
+			</p>
+			<p>
+				Každý apartmán poskytuje dostatek prostoru, světla a kvalitních
+				materiálů pro pohodlné bydlení nebo rekreační využití po celý
+				rok.
+			</p>
+		</div>
+		<Image src={buildSquare} alt="Pohled na objekt" class="object-cover" />
+	</div>
+	<LinkButton text="Domluvit prohlídku" classList="hover-dark object-cover" />
+</section>

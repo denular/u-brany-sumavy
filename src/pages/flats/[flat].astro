@@ -1,0 +1,86 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { flats } from "../../data/flats.ts";
+import Contact from "../../components/Contact.astro";
+import Gallery from "../../components/Gallery.astro";
+import LinkButton from "../../components/LinkButton.astro";
+import { FileText } from "@lucide/astro";
+
+export function getStaticPaths() {
+	return flats.map((flat) => ({
+		params: { flat: flat.id.toString() },
+		props: { flat },
+	}));
+}
+
+const { flat } = Astro.props;
+---
+
+<Layout>
+	<section class="mt-25 flex flex-col items-center gap-10">
+		<h4 class="text-green text-5xl font-light">
+			Ubytovací jednotka č. {flat.id}
+		</h4>
+		<hr class="w-[20vw] border-green" />
+		<div
+			class="flex flex-col items-center text-green font-semibold text-xl"
+		>
+			<p>o dispozici {flat.layout}</p>
+			<p>a celkové ploše {flat.area} m<sup>2</sup></p>
+		</div>
+		<p class="font-semibold text-center w-[50vw]">
+			Nebytová jednotka - ubytovací jednotka č. {flat.id} o dispozici {
+				flat.layout
+			} a celkové podlahové ploše {flat.area} m<sup>2</sup> se nachází v {
+				flat.floor === "1PP"
+					? "1. přízemním podlaží"
+					: "1. a 2. nadzemním podlaží"
+			} bytového domu ve Vimperku. {
+				flat.cellar === "ano" ? "K jednotce náleží sklepní kóje." : ""
+			} Prakticky řešený interiér nabízí příjemné zázemí vhodné jak pro vlastní
+			užívání, tak i jako investiční příležitost.
+		</p>
+		<LinkButton
+			text="Mám zájem o tuto jednotku"
+			href="#Contact"
+			arrow={false}
+			classList="hover-dark font-semibold"
+		/>
+		<div class="flex w-[70vw] border-y py-5">
+			<div class="flex items-center">
+				<FileText color="#9faa87" size={48} class="stroke-1" />
+				<span class="font-semibold">KARTA JEDNOTKY</span>
+			</div>
+			<div class="flex items-center">
+				<FileText color="#9faa87" size={48} class="stroke-1" />
+				<span class="font-semibold">TECHNICKÝ POPIS DOMU</span>
+			</div>
+			<div class="flex items-center">
+				<FileText color="#9faa87" size={48} class="stroke-1" />
+				<span class="font-semibold">STANDARDY STAVBY</span>
+			</div>
+			<div class="flex items-center">
+				<FileText color="#9faa87" size={48} class="stroke-1" />
+				<span class="font-semibold">ENERGETICKÝ ŠTÍTEK</span>
+			</div>
+		</div>
+	</section>
+	<section
+		id="About"
+		class="mt-25 flex flex-col items-center mx-[30vw] text-center"
+	>
+		<h2>O PROJEKTU</h2>
+		<p>
+			Projekt Apartmány U Brány Šumavy nabízí ideální kombinací moderní
+			architekruty a klidného prostředí Šumavy. Bydlení je navrženo s
+			důrazem na komfort, funkčnost a maximální propojení s okolní
+			přírodou.
+		</p>
+		<p>
+			Každý apartmán poskytuje dostatek prostoru, světla a kvalitních
+			materiálů pro pohodlné bydlení nebo rekreační využití po celý rok.
+		</p>
+	</section>
+	<Gallery />
+	<Contact />
+</Layout>

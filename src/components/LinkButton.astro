@@ -1,0 +1,9 @@
+---
+import { twMerge } from "tailwind-merge";
+
+const { text, href, classList, arrow = true } = Astro.props;
+---
+
+<a {href} class={twMerge(classList, "link-button")}>
+	{text}{arrow ? <span class="link-arrow">&#10230;</span> : ""}
+</a>

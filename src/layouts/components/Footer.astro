@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import Menu from "../../components/Menu.astro";
+import NewsLetter from "../../components/NewsLetter.astro";
+import logo from "../../assets/BranaUSumavyApartmany_Logo_MistWhite_CMYK.svg";
+import facebook from "../../assets/facebook.svg";
+import instagram from "../../assets/instagram.svg";
+import linkedin from "../../assets/linkedin.svg";
+import LinkButton from "../../components/LinkButton.astro";
+---
+
+<footer class="py-20 bg-black text-white flex flex-col items-center gap-20">
+	<Image src={logo} alt="Logo" class="w-[30vw]" />
+	<div class="flex flex-col items-center gap-8">
+		<LinkButton
+			text="Kontakty"
+			href="#Contact"
+			classList="hover-light text-xs"
+		/>
+		<div class="flex flex-col items-center text-sm">
+			<p>info@branysumavy.cz</p>
+			<p>+420 123 456 789</p>
+		</div>
+	</div>
+	<div class="flex justify-between border-t border-green w-[80vw] pt-8">
+		<Menu id="footerMenu" />
+		<div
+			id="social"
+			class="flex flex-col justify-between border-l border-green px-5"
+		>
+			<a href="https://www.facebook.com/" target="_blank"
+				><Image
+					src={facebook}
+					alt="Facebook"
+					class="size-8 hover:scale-115 transition duration-150"
+				/></a
+			>
+			<a href="https://www.instagram.com/" target="_blank"
+				><Image
+					src={instagram}
+					alt="Instagram"
+					class="size-8 hover:scale-115 transition duration-150"
+				/></a
+			>
+			<a href="https://www.linkedin.com/" target="_blank"
+				><Image
+					src={linkedin}
+					alt="Linkedin"
+					class="size-8 hover:scale-115 transition duration-150"
+				/></a
+			>
+		</div>
+	</div>
+	<NewsLetter />
+	<p class="w-[80vw] pt-5 text-center border-t border-green text-sm">
+		&copy; 2026 Apartmány U Brány Šumavy. Všechna práva vyhrazena
+	</p>
+</footer>
