@@ -1,7 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import floor_1pp from "../assets/build/building_front_filled_1pp.svg";
+import floor_1np_2np from "../assets/build/building_front_filled_1np_2np.svg";
 import { flats } from "../data/flats.ts";
+import Building from "../data/building.astro";
+import FloorPlanPP from "../data/floorPlanPP.astro";
+import FloorPlanNP from "../data/floorPlanNP.astro";
 
 const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 ---
@@ -15,16 +19,27 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 		</p>
 	</div>
 	<div id="floorPlans" class="flex flex-col gap-20 items-center">
-		<Image src={floor_1pp} alt="Podlaží" />
-		<Image src={floor_1pp} alt="Půdorys" />
-		<div id="flatInfo" class="flex flex-col gap-10">
-			<h4 class="text-center text-green text-5xl font-light">
-				Ubytovací jednotka č. 1
-			</h4>
-			<div class="text-center text-green text-lg font-semibold">
-				<p>{flats[1].layout} {flats[1].area}m<sup>2</sup></p>
-				<p>{flats[1].price}</p>
-			</div>
+		<Building class="w-[50%]" />
+		<!-- <FloorPlanPP /> -->
+		<FloorPlanPP />
+		<FloorPlanNP />
+		<div id="flatInfo" >
+			{flats.map(flat => (
+				<div
+					id={"infoFlat".concat(flat.id.toString())}
+					class={flat.id === 9 ? "" : "hidden"}
+				>
+					<div class="flex flex-col gap-10">
+						<h4 class="text-center text-green text-5xl font-light">
+							Ubytovací jednotka č. {flat.id}
+						</h4>
+						<div class="text-center text-green text-lg font-semibold">
+							<p>{flat.layout} {flat.area}m<sup>2</sup></p>
+							<p>{flat.price}</p>
+						</div>
+					</div>
+				</div>
+			))}
 		</div>
 	</div>
 	<table id="flatsTable" class="w-full mt-10 text-center text-green">
@@ -104,24 +119,219 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 		});
 	};
 
-	const showTable = () => {};
-
-	// const openNavigation = () => {
-	// 	navButton?.setAttribute("aria-expanded", "true");
-	// 	primaryNav?.classList.remove("hidden");
-	// 	overlay?.classList.remove("hidden");
-	// };
-
-	// const closeNavigation = () => {
-	// 	navButton?.setAttribute("aria-expanded", "false");
-	// 	primaryNav?.classList.add("hidden");
-	// 	overlay?.classList.add("hidden");
-	// };
-
-	// const toggleNavigation = () => {
-	// 	const open = navButton?.getAttribute("aria-expanded");
-	// 	open === "false" ? openNavigation() : closeNavigation();
-	// };
-
 	selector?.addEventListener("change", filterTable);
+</script>
+<script>
+	const infoFlat1 = document.getElementById("infoFlat1") as HTMLElement;
+	const infoFlat2 = document.getElementById("infoFlat2") as HTMLElement;
+	const infoFlat3 = document.getElementById("infoFlat3") as HTMLElement;
+	const infoFlat4 = document.getElementById("infoFlat4") as HTMLElement;
+	const infoFlat5 = document.getElementById("infoFlat5") as HTMLElement;
+	const infoFlat6 = document.getElementById("infoFlat6") as HTMLElement;
+	const infoFlat7 = document.getElementById("infoFlat7") as HTMLElement;
+	const infoFlat8 = document.getElementById("infoFlat8") as HTMLElement;
+	const infoFlat9 = document.getElementById("infoFlat9") as HTMLElement;
+	const infoFlat10 = document.getElementById("infoFlat10") as HTMLElement;
+	const infoFlat11 = document.getElementById("infoFlat11") as HTMLElement;
+	const infoFlat12 = document.getElementById("infoFlat12") as HTMLElement;
+
+	let selInfoFlatPP = infoFlat9;
+	let selInfoFlatNP = infoFlat1;
+
+	const hideAllInfo = () => {
+		infoFlat1.classList.add("hidden");
+		infoFlat2.classList.add("hidden");
+		infoFlat3.classList.add("hidden");
+		infoFlat4.classList.add("hidden");
+		infoFlat5.classList.add("hidden");
+		infoFlat6.classList.add("hidden");
+		infoFlat7.classList.add("hidden");
+		infoFlat8.classList.add("hidden");
+		infoFlat9.classList.add("hidden");
+		infoFlat10.classList.add("hidden");
+		infoFlat11.classList.add("hidden");
+		infoFlat12.classList.add("hidden");
+	}
+
+	const flat12 = document.getElementById("flat12") as HTMLElement;
+	const oFlat12 = document.getElementById("oflat12") as HTMLElement;
+
+	const flat11 = document.getElementById("flat11") as HTMLElement;
+	const oFlat11 = document.getElementById("oflat11") as HTMLElement;
+
+	const flat10 = document.getElementById("flat10") as HTMLElement;
+	const oFlat10 = document.getElementById("oflat10") as HTMLElement;
+
+	const flat9 = document.getElementById("flat9") as HTMLElement;
+	const oFlat9 = document.getElementById("oflat9") as HTMLElement;
+
+	let selFlatPP = flat9;
+
+	const clearFlatsPP = () => {
+		flat9.classList.add("opacity-0");
+		flat10.classList.add("opacity-0");
+		flat11.classList.add("opacity-0");
+		flat12.classList.add("opacity-0");
+	};
+
+	const setupListenersPP = (flat, oflat, infoFlat) => {
+		oflat.addEventListener("mouseenter", () => {
+			clearFlatsPP();
+			flat.classList.remove("opacity-0");
+			hideAllInfo();
+			infoFlat.classList.remove("hidden");
+		});
+		oflat.addEventListener("mouseleave", () => {
+			flat.classList.add("opacity-0");
+			selFlatPP.classList.remove("opacity-0");
+			hideAllInfo();
+			selInfoFlatPP.classList.remove("hidden");
+		});
+		oflat.addEventListener("click", () => {
+			selFlatPP = flat;
+			selInfoFlatPP = infoFlat;
+		});
+
+	};
+
+	setupListenersPP(flat9, oflat9, infoFlat9);
+	setupListenersPP(flat10, oflat10, infoFlat10);
+	setupListenersPP(flat11, oflat11, infoFlat11);
+	setupListenersPP(flat12, oflat12, infoFlat12);
+
+	const flat1 = document.getElementById("flat1") as HTMLElement;
+	const oFlat1 = document.getElementById("oflat1") as HTMLElement;
+
+	const flat2 = document.getElementById("flat2") as HTMLElement;
+	const oFlat2 = document.getElementById("oflat2") as HTMLElement;
+
+	const flat3 = document.getElementById("flat3") as HTMLElement;
+	const oFlat3 = document.getElementById("oflat3") as HTMLElement;
+
+	const flat4 = document.getElementById("flat4") as HTMLElement;
+	const oFlat4 = document.getElementById("oflat4") as HTMLElement;
+
+	const flat5 = document.getElementById("flat5") as HTMLElement;
+	const oFlat5 = document.getElementById("oflat5") as HTMLElement;
+
+	const flat6 = document.getElementById("flat6") as HTMLElement;
+	const oFlat6 = document.getElementById("oflat6") as HTMLElement;
+
+	const flat7 = document.getElementById("flat7") as HTMLElement;
+	const oFlat7 = document.getElementById("oflat7") as HTMLElement;
+
+	const flat8 = document.getElementById("flat8") as HTMLElement;
+	const oFlat8 = document.getElementById("oflat8") as HTMLElement;
+
+	let selFlatNP = flat1;
+
+	const clearFlatsNP = () => {
+		flat1.classList.add("opacity-0");
+		flat2.classList.add("opacity-0");
+		flat3.classList.add("opacity-0");
+		flat4.classList.add("opacity-0");
+		flat5.classList.add("opacity-0");
+		flat6.classList.add("opacity-0");
+		flat7.classList.add("opacity-0");
+		flat8.classList.add("opacity-0");
+	};
+
+	const setupListenersNP = (flat, oflat, infoFlat) => {
+		oflat.addEventListener("mouseenter", () => {
+			clearFlatsNP();
+			flat.classList.remove("opacity-0");
+			hideAllInfo();
+			infoFlat.classList.remove("hidden");
+		});
+		oflat.addEventListener("mouseleave", () => {
+			flat.classList.add("opacity-0");
+			selFlatNP.classList.remove("opacity-0");
+			hideAllInfo();
+			selInfoFlatNP.classList.remove("hidden");
+		});
+		oflat.addEventListener("click", () => {
+			selFlatNP = flat;
+			selInfoFlatNP = infoFlat;
+		});
+
+	};
+
+	setupListenersNP(flat1, oflat1, infoFlat1);
+	setupListenersNP(flat2, oflat2, infoFlat2);
+	setupListenersNP(flat3, oflat3, infoFlat3);
+	setupListenersNP(flat4, oflat4, infoFlat4);
+	setupListenersNP(flat5, oflat5, infoFlat5);
+	setupListenersNP(flat6, oflat6, infoFlat6);
+	setupListenersNP(flat7, oflat7, infoFlat7);
+	setupListenersNP(flat8, oflat8, infoFlat8);
+
+		const groupPP = document.getElementById("pp") as HTMLElement;
+	const oGroupPP = document.getElementById("opp") as HTMLElement;
+	const groupNP = document.getElementById("np") as HTMLElement;
+	const oGroupNP = document.getElementById("onp") as HTMLElement;
+
+	const floorPlanPP = document.getElementById("floorPlanPP") as HTMLElement;
+	const floorPlanNP = document.getElementById("floorPlanNP") as HTMLElement;
+
+	let selFloor: HTMLElement = groupPP;
+
+	const clearP = () => {
+		groupPP.classList.add("opacity-0");
+		groupNP.classList.add("opacity-0");
+	};
+
+	const showPP = () => {
+		floorPlanNP.classList.add("hidden");
+		floorPlanPP.classList.remove("hidden");
+	};
+
+	const showNP = () => {
+		floorPlanPP.classList.add("hidden");
+		floorPlanNP.classList.remove("hidden");
+	};
+
+	const showSel = () => {
+		floorPlanNP.classList.add("hidden");
+		floorPlanPP.classList.add("hidden");
+		hideAllInfo();
+		if (selFloor === groupPP) {
+			floorPlanPP.classList.remove("hidden");
+			selInfoFlatPP.classList.remove("hidden");
+		} else {
+			floorPlanNP.classList.remove("hidden");
+			selInfoFlatNP.classList.remove("hidden");
+		}
+	};
+
+	oGroupPP.addEventListener("mouseenter", () => {
+		clearP();
+		groupPP.classList.remove("opacity-0");
+		showPP();
+		hideAllInfo();
+		selInfoFlatPP.classList.remove("hidden");
+	});
+	oGroupPP.addEventListener("mouseleave", () => {
+		groupPP.classList.add("opacity-0");
+		selFloor.classList.remove("opacity-0");
+		showSel();
+	});
+	oGroupPP.addEventListener("click", () => {
+		selFloor = groupPP;
+	});
+
+	oGroupNP.addEventListener("mouseenter", () => {
+		clearP();
+		groupNP.classList.remove("opacity-0");
+		showNP();
+		hideAllInfo();
+		selInfoFlatNP.classList.remove("hidden");
+	});
+	oGroupNP.addEventListener("mouseleave", () => {
+		groupNP.classList.add("opacity-0");
+		selFloor.classList.remove("opacity-0");
+		showSel();
+	});
+	oGroupNP.addEventListener("click", () => {
+		selFloor = groupNP;
+	});
 </script>

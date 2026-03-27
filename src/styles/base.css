@@ -2,7 +2,7 @@
 	html {
 		margin: 0;
 		width: 100%;
-		scroll-padding-top: 144px;
+		scroll-padding-top: 194px;
 		font-size: var(--text-base);
 		font-family: var(--font-montserrat);
 	}

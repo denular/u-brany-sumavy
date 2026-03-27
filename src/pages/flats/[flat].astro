@@ -81,10 +81,14 @@ const { flat } = Astro.props;
 			/>
 		</div>
 		<div class="flex w-[70vw] border-y py-5">
-			<div class="flex items-center">
+			<a
+				download
+				href={"/flats_cards/".concat(flat.card)}
+				class="flex items-center"
+			>
 				<FileText color="#9faa87" size={48} class="stroke-1" />
 				<span class="font-semibold">KARTA JEDNOTKY</span>
-			</div>
+			</a>
 			<div class="flex items-center">
 				<FileText color="#9faa87" size={48} class="stroke-1" />
 				<span class="font-semibold">TECHNICKÝ POPIS DOMU</span>
@@ -158,6 +162,6 @@ const { flat } = Astro.props;
 			materiálů pro pohodlné bydlení nebo rekreační využití po celý rok.
 		</p>
 	</section>
-	<Gallery />
+	<Gallery showButton={false} />
 	<Contact />
 </Layout>

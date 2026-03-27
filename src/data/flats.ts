@@ -38,7 +38,8 @@ export const flats = [
 		floorPlan: flat1,
 		flatPlan: detail1,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B1.pdf"
 	},
 	{
 		id: 2,
@@ -53,7 +54,8 @@ export const flats = [
 		floorPlan: flat2,
 		flatPlan: detail2,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B2.pdf"
 	},
 	{
 		id: 3,
@@ -68,7 +70,8 @@ export const flats = [
 		floorPlan: flat3,
 		flatPlan: detail3,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B3.pdf"
 	},
 	{
 		id: 4,
@@ -83,7 +86,8 @@ export const flats = [
 		floorPlan: flat4,
 		flatPlan: detail4,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B4.pdf"
 	},
 	{
 		id: 5,
@@ -98,7 +102,8 @@ export const flats = [
 		floorPlan: flat5,
 		flatPlan: detail5,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B5.pdf"
 	},
 	{
 		id: 6,
@@ -113,7 +118,8 @@ export const flats = [
 		floorPlan: flat6,
 		flatPlan: detail6,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B6.pdf"
 	},
 	{
 		id: 7,
@@ -128,7 +134,8 @@ export const flats = [
 		floorPlan: flat7,
 		flatPlan: detail7,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B7.pdf"
 	},
 	{
 		id: 8,
@@ -143,7 +150,8 @@ export const flats = [
 		floorPlan: flat8,
 		flatPlan: detail8,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B8.pdf"
 	},
 	{
 		id: 9,
@@ -158,7 +166,8 @@ export const flats = [
 		floorPlan: flat9,
 		flatPlan: detail9,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B9.pdf"
 	},
 	{
 		id: 10,
@@ -173,7 +182,8 @@ export const flats = [
 		floorPlan: flat10,
 		flatPlan: detail10,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B10.pdf"
 	},
 	{
 		id: 11,
@@ -188,7 +198,8 @@ export const flats = [
 		floorPlan: flat11,
 		flatPlan: detail11,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B11.pdf"
 	},
 	{
 		id: 12,
@@ -203,6 +214,7 @@ export const flats = [
 		floorPlan: flat12,
 		flatPlan: detail12,
 		state: "Fit out",
-		parking: "ano"
+		parking: "ano",
+		card: "U_Brany_Sumavy_Karta_B12.pdf"
 	},
 ];
