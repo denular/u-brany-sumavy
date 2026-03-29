@@ -11,16 +11,15 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 ---
 
 <section id="Flats" class="mx-[4vw] mt-25 flex flex-col gap-10">
-	<div class="grid grid-cols-2">
-		<h1 class="ml-[8%]">BYTY<br />A CENÍK</h1>
+	<div class="flex flex-col gap-4 lg:grid lg:gap-0 grid-cols-2">
+		<h1 class="lg:ml-[8%]">BYTY<br />A CENÍK</h1>
 		<p class="text-sm font-semibold">
 			Prohlédněte si aktuální nabídku apartmánů v projektu<br /> Apartmány U
 			Brány Šumavy
 		</p>
 	</div>
 	<div id="floorPlans" class="flex flex-col gap-20 items-center">
-		<Building class="w-[50%]" />
-		<!-- <FloorPlanPP /> -->
+		<Building />
 		<FloorPlanPP />
 		<FloorPlanNP />
 		<div id="flatInfo" >
@@ -30,9 +29,11 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 					class={flat.id === 9 ? "" : "hidden"}
 				>
 					<div class="flex flex-col gap-10">
-						<h4 class="text-center text-green text-5xl font-light">
-							Ubytovací jednotka č. {flat.id}
-						</h4>
+						<a href=`flats/${flat.id}`>
+							<h4 class="text-center text-green text-5xl font-light">
+								Ubytovací jednotka č. {flat.id}
+							</h4>
+						</a>
 						<div class="text-center text-green text-lg font-semibold">
 							<p>{flat.layout} {flat.area}m<sup>2</sup></p>
 							<p>{flat.price}</p>
@@ -42,7 +43,7 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 			))}
 		</div>
 	</div>
-	<table id="flatsTable" class="w-full mt-10 text-center text-green">
+	<table id="flatsTable" class="hidden lg:static w-full mt-10 text-center text-green">
 		<tr class="align-top text-black">
 			<th>Byt č.</th>
 			<th class="min-w-20.5">Podlaží</th>

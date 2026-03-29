@@ -3,21 +3,22 @@ import { Image } from "astro:assets";
 import logo from "../../assets/BranaUSumavyApartmany_Logo_Color_RGB.svg";
 import LinkButton from "../../components/LinkButton.astro";
 import LocaleButton from "../../components/LocaleButton.astro";
-import Menu from "../../components/Menu.astro";
+import Menu_list from "../../components/Menu.astro";
+import {Menu, X} from "@lucide/astro"
 ---
 
 <header
-	class="bg-white px-15 py-5 sticky top-0 w-full z-300 flex flex-col gap-10 shadow-md"
+	class="bg-white h-20 lg:h-auto px-5 lg:px-15 py-5 sticky top-0 w-full z-300 flex flex-col gap-10 shadow-md"
 >
 	<div
-		class="h-10 grid grid-flow-col auto-cols-max gap-5 justify-between items-center"
+		class="h-10 flex gap-5 justify-between items-center"
 	>
-		<a href="/">
-			<Image src={logo} alt="Logo" class="w-[30vw]" />
+		<a href="/" class="w-max">
+			<Image src={logo} alt="Logo" class="max-h-14 lg:w-[30vw]" />
 		</a>
 		<div
 			id="settings"
-			class="grid grid-flow-col auto-cols-max gap-5 items-center"
+			class="hidden lg:grid grid-flow-col auto-cols-max gap-5 items-center "
 		>
 			<LocaleButton classList="hover-dark invisible" />
 			<LinkButton
@@ -31,6 +32,29 @@ import Menu from "../../components/Menu.astro";
 				classList="hover-dark"
 			/>
 		</div>
+		<div class="flex lg:hidden">
+			<button popovertarget="menu-popover">
+				<Menu />
+			</button>
+			<dialog id="menu-popover" closedby="any" popover class="dialog dialog-right dialog-backdrop right-0 left-auto h-full max-h-full w-max min-w-1/3 overflow-visible p-1 ">
+				<button popovertarget="menu-popover" popoveraction="close">
+					<X />
+				</button>
+				<Menu_list id="popoverMenu" classList="text-2xl p-4 font-medium"/>
+			</dialog>
+		</div>
+
 	</div>
-	<Menu id="headerMenu" />
+	<Menu_list id="headerMenu" classList="hidden lg:block"/>
 </header>
+
+<script>
+	const popover = document.getElementById("menu-popover");
+	const popover_links = popover.getElementsByTagName("a");
+
+	for(const link of popover_links) {
+		link.addEventListener("click", () => {
+			popover.hidePopover();
+		});
+	};
+</script>

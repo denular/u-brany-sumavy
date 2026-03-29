@@ -26,4 +26,51 @@
 		@apply flex text-center items-center justify-center;
 		@apply hover:cursor-pointer;
 	}
+
+	.dialog {
+		@apply transition-dialog;
+		--translate: none;
+		opacity: 0;
+
+		@variant open {
+			opacity: 100%;
+
+			@variant starting {
+			opacity: 0;
+			}
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			translate: var(--translate);
+
+			@variant open {
+			translate: none;
+
+				@variant starting {
+					translate: var(--translate);
+				}
+			}
+		}
+	}
+
+	 .dialog-right {
+		--translate: 100% 0;
+	}
+
+	.dialog-backdrop {
+		&::backdrop {
+			@apply transition-dialog bg-black;
+			opacity: 0;
+		}
+
+		@variant open {
+			&::backdrop {
+			opacity: 75%;
+
+			@starting-style {
+				opacity: 0%;
+			}
+			}
+		}
+	}
 }

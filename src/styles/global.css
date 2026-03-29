@@ -3,7 +3,9 @@
 
 @import "./theme.css";
 @import "./base.css";
+@import "./utilities.css";
 @import "./components.css";
+
 
 
 #headerMenu ul {
@@ -30,6 +32,18 @@
 	@apply before:content-[attr(data-text)] before:block before:font-bold before:h-0 before:invisible
 }
 
+#popoverMenu ul {
+	@apply flex flex-col text-xl md:text-2xl gap-[1em]
+}
+
+#popoverMenu li {
+	@apply relative inline-block hover:font-semibold hover:cursor-pointer text-nowrap
+}
+
+#popoverMenu li a {
+	@apply before:content-[attr(data-text)] before:block before:font-bold before:h-0 before:invisible
+}
+
 #Flats tr {
 	@apply border-b border-white last:border-green
 }
@@ -48,7 +62,7 @@
 
 #Financing .purchStep {
 	@apply border-t border-green last:border-b;
-	@apply grid grid-cols-2 grid-flow-col px-[4vw] py-6;
+	@apply flex flex-col gap-2 lg:grid lg:gap-0 grid-cols-2 grid-flow-col px-[4vw] py-6;
 }
 
 #Financing .purchStep h4 {
@@ -60,11 +74,11 @@
 }
 
 #access h4 {
-	@apply text-green text-4xl font-semibold
+	@apply text-green text-2xl lg:text-4xl font-semibold
 }
 
 #access h4 span {
-	@apply text-3xl font-medium
+	@apply text-xl lg:text-3xl font-medium
 }
 
 #access h4+span {

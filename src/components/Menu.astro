@@ -1,8 +1,8 @@
 ---
-const { id } = Astro.props;
+const { id, classList } = Astro.props;
 ---
 
-<nav id={id}>
+<nav id={id} class={classList}>
 	<ul>
 		<li><a href="#" data-text="Úvod">Úvod</a></li>
 		<li><a href="#About" data-text="O projektu">O projektu</a></li>
