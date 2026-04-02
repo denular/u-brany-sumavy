@@ -1,31 +1,33 @@
 <section id="Contact" class="mx-[4vw] mt-25 flex flex-col gap-20 items-center">
 	<h1 class="text-center">KONTAKTUJTE NÁS</h1>
 	<form
+		id="contact-form"
+		method="POST"
 		class="w-[50vw] max-w-150 text-darkgreen flex flex-col gap-[2em] items-center"
 	>
 		<fieldset class="flex flex-col w-full items-center gap-[4em]">
 			<label>
 				Jméno
-				<input type="text" />
+				<input required name="firstName" type="text" />
 			</label>
 			<label>
 				Příjmení
-				<input type="text" />
+				<input required name="surName" type="text" />
 			</label>
 			<label>
 				Email
-				<input type="email" />
+				<input required name="email" type="email" />
 			</label>
 			<label>
 				Zpráva
-				<textarea rows="3" class="px-[0.4em] py-[0.2em]"></textarea>
+				<textarea required name="message" rows="3" class="px-[0.4em] py-[0.2em]"></textarea>
 			</label>
 		</fieldset>
 		<label
-			class="flex flex-col gap-6 items-center text-sm"
+			class="flex gap-6 items-center text-sm"
 		>
-			<input type="checkbox" checked class="size-5 accent-green" />
-			<details class="w-[50vw] max-w-120 text-center">
+			<input type="checkbox" checked required class="size-5 accent-green" />
+			<details class="max-w-120 text-center">
 				<summary class="list-none">
 					*Souhlasím se zpracováním údajů v souladu s nařízením GDPR.
 					<span class="font-semibold">Více</span>
@@ -50,7 +52,7 @@
 		<label
 			class="grid grid-flow-col auto-cols-max gap-6 items-center text-sm"
 		>
-			<input type="checkbox" class="size-5 accent-green" />
+			<input name="newsletter" type="checkbox" class="size-5 accent-green" />
 			Souhlasím se zasíláním novinek
 		</label>
 		<button
@@ -60,3 +62,17 @@
 		>
 	</form>
 </section>
+
+<script>
+	import { actions } from 'astro:actions';
+
+
+	const contactForm = document.getElementById("contact-form");
+	contactForm.addEventListener("submit", async (event: Event) => {
+		event.preventDefault();
+		const form = event.target;
+		const formData = new FormData(form);
+		const {data , error} = await actions.send(formData);
+		if (!error) form.reset();
+	})
+</script>
