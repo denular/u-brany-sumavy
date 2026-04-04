@@ -4,10 +4,10 @@ import { ChevronRight } from '@lucide/astro';
 
 <div class="flex flex-col gap-6 items-center w-[85vw] max-w-110">
 	<h4 class="font-medium">Odběr novinek</h4>
-	<form class="w-full flex">
-		<input type="email" placeholder="Zadejte svůj e-mail" class="border-b border-green w-full" />
+	<form class="w-full border-b border-green flex">
+		<input type="email" placeholder="Zadejte svůj e-mail" class="w-full" />
 		<button type="submit" value=">" class="pl-1 hover:cursor-pointer">
-			<ChevronRight />
+			<ChevronRight class="translate-x-[9px]"/>
 		</button>
 	</form>
 	<p class="text-center text-xs font-extralight">

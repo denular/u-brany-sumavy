@@ -82,26 +82,26 @@ const { flat } = Astro.props;
 				classList="hover-dark font-semibold"
 			/>
 		</div>
-		<div class="text-sm lg:text-base flex flex-col lg:flex-row w-[70vw] border-y py-5">
+		<div class="text-lg flex flex-col gap-5 lg:gap-0 lg:flex-row lg:justify-between w-max lg:w-full lg:max-w-220 border-y py-7.5">
 			<a
 				download
 				href={"/flats_cards/".concat(flat.card)}
-				class="flex items-center"
+				class="flex items-center hover:cursor-pointer"
 			>
-				<FileText color="#9faa87" size={48} class="stroke-1" />
-				<span class="font-semibold">KARTA JEDNOTKY</span>
+				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
+				<span class="font-semibold w-max">KARTA<br />JEDNOTKY</span>
 			</a>
-			<div class="flex items-center">
-				<FileText color="#9faa87" size={48} class="stroke-1" />
-				<span class="font-semibold">TECHNICKÝ POPIS DOMU</span>
+			<div class="flex items-center hover:cursor-pointer">
+				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
+				<span class="font-semibold w-max">TECHNICKÝ POPIS<br />DOMU</span>
 			</div>
-			<div class="flex items-center">
-				<FileText color="#9faa87" size={48} class="stroke-1" />
-				<span class="font-semibold">STANDARDY STAVBY</span>
+			<div class="flex items-center hover:cursor-pointer">
+				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
+				<span class="font-semibold w-max">STANDARDY<br />STAVBY</span>
 			</div>
-			<div class="flex items-center">
-				<FileText color="#9faa87" size={48} class="stroke-1" />
-				<span class="font-semibold">ENERGETICKÝ ŠTÍTEK</span>
+			<div class="flex items-center hover:cursor-pointer">
+				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
+				<span class="font-semibold w-max">ENERGETICKÝ<br />ŠTÍTEK</span>
 			</div>
 		</div>
 		<div class="flex flex-col items-center gap-24">
@@ -136,7 +136,7 @@ const { flat } = Astro.props;
 	</section>
 	<section id="Params" class="mt-25 flex flex-col items-center">
 		<h2>PARAMETRY</h2>
-		<ul class="w-[80vw] lg:w-[60vw]">
+		<ul class="text-lg w-[80vw] lg:w-[60vw]">
 			<li><span>Dispozice</span><span>{flat.layout}</span></li>
 			<li><span>Celková plocha</span><span>{flat.area} m<sup>2</sup></span></li>
 			<li><span>Podlahová plocha</span><span>{flat.floorArea} m<sup>2</sup></span></li>
