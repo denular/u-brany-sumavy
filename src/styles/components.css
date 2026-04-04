@@ -14,7 +14,7 @@
 	}
 
 	.link-button .link-arrow {
-		@apply text-green text-[1.4em]
+		@apply text-green
 	}
 
 	.hover-light:hover .link-arrow {

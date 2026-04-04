@@ -1,10 +1,14 @@
-<div class="flex flex-col gap-6 items-center w-[30vw]">
+---
+import { ChevronRight } from '@lucide/astro';
+---
+
+<div class="flex flex-col gap-6 items-center w-[85vw] max-w-110">
 	<h4 class="font-medium">Odběr novinek</h4>
-	<form class="border-b border-green w-full flex">
-		<input type="email" placeholder="Zadejte svůj e-mail" class="w-full" />
-		<button type="submit" value=">" class="px-1 hover:cursor-pointer"
-			>&#9002;</button
-		>
+	<form class="w-full flex">
+		<input type="email" placeholder="Zadejte svůj e-mail" class="border-b border-green w-full" />
+		<button type="submit" value=">" class="pl-1 hover:cursor-pointer">
+			<ChevronRight />
+		</button>
 	</form>
 	<p class="text-center text-xs font-extralight">
 		Vaše adresa je u nás v bezpečí přečtěte si naše podmínky zpracování

@@ -6,7 +6,7 @@ import map from "../assets/mapa.jpg";
 import LinkButton from "./LinkButton.astro";
 ---
 
-<section id="Directions" class="mt-25 flex flex-col gap-15 items-center">
+<section id="Directions" class="mt-25 flex flex-col gap-25 items-center">
 	<div class="mx-[4%] flex flex-col gap-20">
 		<h1 class="lg:ml-[8%]">LOKALITA</h1>
 		<div class="flex flex-col gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[55%_45%] items-center">
@@ -42,29 +42,31 @@ import LinkButton from "./LinkButton.astro";
 			<Image src={buildSquare} alt="Pohled na objekt" />
 		</div>
 	</div>
-	<hr class="w-[20vw] border-green" />
-	<div id="access" class="w-[60vw] flex flex-col gap-2 lg:gap-0 lg:flex-row justify-between">
-		<div class="flex flex-col">
-			<h4>5 <span>min</span></h4>
-			<span>Zdíkov</span>
+	<hr class="w-[80vw] max-w-lg border-green" />
+	<div class="flex flex-col items-center gap-15">
+		<div id="access" class="w-[70vw] flex flex-col text-center gap-y-5 md:grid md:grid-cols-2 md:gap-y-10 lg:gap-0 lg:flex lg:flex-row justify-between justify-items-center">
+			<div class="flex flex-col">
+				<h4>5 <span>min</span></h4>
+				<span>Zdíkov</span>
+			</div>
+			<div class="flex flex-col">
+				<h4>10 <span>min</span></h4>
+				<span>Zadov-Churáňov</span>
+			</div>
+			<div class="flex flex-col">
+				<h4>15 <span>min</span></h4>
+				<span>Kvilda</span>
+			</div>
+			<div class="flex flex-col">
+				<h4>20 <span>min</span></h4>
+				<span>Vimperk</span>
+			</div>
 		</div>
-		<div class="flex flex-col">
-			<h4>10 <span>min</span></h4>
-			<span>Zadov-Churáňov</span>
-		</div>
-		<div class="flex flex-col">
-			<h4>15 <span>min</span></h4>
-			<span>Kvilda</span>
-		</div>
-		<div class="flex flex-col">
-			<h4>20 <span>min</span></h4>
-			<span>Vimperk</span>
-		</div>
-	</div>
-	<Image src={map} alt="mapa" class="w-full" />
-	<LinkButton
+		<Image src={map} alt="mapa" class="w-full" />
+		<LinkButton
 		text="Nabídka bytů"
 		href="#Flats"
 		classList="hover-dark text-sm"
-	/>
+		/>
+	</div>
 </section>

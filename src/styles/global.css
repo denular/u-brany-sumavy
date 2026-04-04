@@ -62,27 +62,27 @@
 
 #Financing .purchStep {
 	@apply border-t border-green last:border-b;
-	@apply flex flex-col gap-2 lg:grid lg:gap-0 grid-cols-2 grid-flow-col px-[4vw] py-6;
+	@apply flex flex-col gap-2 lg:grid lg:gap-0 grid-cols-2 grid-flow-col px-[4vw] py-7.5;
 }
 
 #Financing .purchStep h4 {
-	@apply text-lg font-semibold
+	@apply text-[22px] font-semibold
 }
 
 #Financing .purchStep p {
-	@apply font-light
+	@apply text-[18px] font-light
 }
 
 #access h4 {
-	@apply text-green text-2xl lg:text-4xl font-semibold
+	@apply text-green text-[52px] font-semibold
 }
 
 #access h4 span {
-	@apply text-xl lg:text-3xl font-medium
+	@apply text-[38px] font-medium
 }
 
 #access h4+span {
-	@apply text-sm font-light
+	@apply text-lg font-light
 }
 
 #Contact fieldset label {
