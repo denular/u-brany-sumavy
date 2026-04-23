@@ -7,13 +7,27 @@ import Financing from "#components/Financing.astro";
 import Contact from "#components/Contact.astro";
 import Flats from "#components/Flats.astro";
 import Gallery from "#components/Gallery.astro";
+
+import img1 from "#assets/Image_galllery_asset_placeholder_wide.jpg";
+
+const images = [
+	{src: img1, alt: "Obrázek 1"},
+	{src: img1, alt: "Obrázek 2"},
+	{src: img1, alt: "Obrázek 3"},
+	{src: img1, alt: "Obrázek 4"},
+	{src: img1, alt: "Obrázek 5"},
+	{src: img1, alt: "Obrázek 6"},
+	{src: img1, alt: "Obrázek 7"},
+	{src: img1, alt: "Obrázek 8"},
+	{src: img1, alt: "Obrázek 9"},
+]
 ---
 
 <Layout>
 	<Hero />
 	<About />
 	<Flats />
-	<Gallery />
+	<Gallery images={images} />
 	<Directions />
 	<Financing />
 	<Contact />
