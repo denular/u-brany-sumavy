@@ -9,9 +9,6 @@ import ShortAbout from "#components/flats/ShortAbout.astro";
 import Gallery from "#components/Gallery.astro";
 import Contact from "#components/Contact.astro";
 
-import img1 from "#assets/Image_galllery_asset_placeholder_wide.jpg";
-
-
 export function getStaticPaths() {
 	return flats.map((flat) => ({
 		params: { flat: flat.id.toString() },
@@ -20,24 +17,12 @@ export function getStaticPaths() {
 }
 
 const { flat } = Astro.props;
-
-const images = [
-	{src: img1, alt: "Obrázek 1"},
-	{src: img1, alt: "Obrázek 2"},
-	{src: img1, alt: "Obrázek 3"},
-	{src: img1, alt: "Obrázek 4"},
-	{src: img1, alt: "Obrázek 5"},
-	{src: img1, alt: "Obrázek 6"},
-	{src: img1, alt: "Obrázek 7"},
-	{src: img1, alt: "Obrázek 8"},
-	{src: img1, alt: "Obrázek 9"},
-]
 ---
 
 <Layout>
 	<UnitInfo flat={flat} />
 	<Params flat={flat} />
 	<ShortAbout />
-	<Gallery images={images} showButton={false} />
+	<Gallery images={flat.gallery} showButton={false} />
 	<Contact />
 </Layout>
