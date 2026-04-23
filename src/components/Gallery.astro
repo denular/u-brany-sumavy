@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import img1 from "../assets/Image_galllery_asset_placeholder_wide.jpg";
-import LinkButton from "./LinkButton.astro";
+import img1 from "#assets/Image_galllery_asset_placeholder_wide.jpg";
+import LinkButton from "#components/LinkButton.astro";
 import {MoveLeft, MoveRight} from "@lucide/astro"
 
 
@@ -11,23 +11,29 @@ const images = [
 	{src: img1, alt: "Obrázek 1"},
 	{src: img1, alt: "Obrázek 2"},
 	{src: img1, alt: "Obrázek 3"},
+	{src: img1, alt: "Obrázek 4"},
+	{src: img1, alt: "Obrázek 5"},
+	{src: img1, alt: "Obrázek 6"},
+	{src: img1, alt: "Obrázek 7"},
+	{src: img1, alt: "Obrázek 8"},
+	{src: img1, alt: "Obrázek 9"},
 ]
 ---
 
 <section id="Gallery" class="mt-25 flex flex-col gap-20 items-center">
 	<div class="relative">
-		<div id="gallery-carousel" class="flex snap-x snap-mandatory gap-5.5 overflow-x-scroll scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+		<div id="gallery-carousel" class="max-h-[calc(90vh-144px)] flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 			{images.map((img)=> (
-				<Image src={img.src} alt={img.alt} class="gallery-image snap-center"/>
+				<Image src={img.src} alt={img.alt} class="gallery-image snap-center object-cover size-full"/>
 			))}
 		</div>
-		<button id="move-left" class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 left-5 border border-white rounded-full">
-			<MoveLeft class="stroke-white stroke-1 p-1" />
+		<button id="move-left" class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 -translate-y-1/2 left-5 border border-white rounded-full">
+			<MoveLeft class="stroke-white stroke-1 p-1 size-8" />
 		</button>
-		<button id="move-right" class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 right-5 border border-white rounded-full">
-			<MoveRight class="stroke-white stroke-1 p-1" />
+		<button id="move-right" class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 -translate-y-1/2 right-5 border border-white rounded-full">
+			<MoveRight class="stroke-white stroke-1 p-1 size-8" />
 		</button>
-		<div class="absolute left-1/2 transform-x-1/2 bottom-5 flex gap-2">
+		<div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-2">
 			{ images.map(()=>(
 				<button class="gallery-dot hover:scale-120 hover:cursor-pointer duration-200">
 					<svg

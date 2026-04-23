@@ -1,15 +1,14 @@
 ---
 export const prerender = true;
 
-import Layout from "../../layouts/Layout.astro";
-import { flats } from "../../data/flats.ts";
-import Contact from "../../components/Contact.astro";
-import Gallery from "../../components/Gallery.astro";
-import LinkButton from "../../components/LinkButton.astro";
-import { FileText, MoveRight } from "@lucide/astro";
-import { Image } from "astro:assets";
-import floorPP from "../../assets/build/building_front_filled_1pp.svg";
-import floorNP from "../../assets/build/building_front_filled_1np_2np.svg";
+import { flats } from "#data/flats.ts";
+import Layout from "#layouts/Layout.astro";
+import UnitInfo from "#components/flats/UnitInfo.astro";
+import Params from "#components/flats/Params.astro";
+import ShortAbout from "#components/flats/ShortAbout.astro";
+import Gallery from "#components/Gallery.astro";
+import Contact from "#components/Contact.astro";
+
 
 export function getStaticPaths() {
 	return flats.map((flat) => ({
@@ -22,148 +21,9 @@ const { flat } = Astro.props;
 ---
 
 <Layout>
-	<section class="mt-25 flex flex-col items-center gap-20 lg:gap-40">
-		<div class="flex flex-col items-center gap-10">
-			<div
-				class="flex w-[80vw] items-center justify-between text-green text-center text-3xl lg:text-5xl font-light"
-			>
-				{
-					flat.id === 1 ? (
-						<span class="text-gray">&#10229;</span>
-					) : (
-						<a
-							href={"/flats/".concat((flat.id - 1).toString())}
-							class="hover:cursor-pointer hover:scale-115 transition duration-300"
-						>
-							&#10229;
-						</a>
-					)
-				}
-				<h4>Ubytovací jednotka č. {flat.id}</h4>
-				{
-					flat.id === 12 ? (
-						<span class="text-gray">&#10230;</span>
-					) : (
-						<a
-							href={"/flats/".concat((flat.id + 1).toString())}
-							class="hover:cursor-pointer hover:scale-115 transition duration-300"
-						>
-							&#10230;
-						</a>
-					)
-				}
-			</div>
-			<hr class="w-[20vw] border-green" />
-			<div
-				class="flex flex-col items-center text-green font-semibold text-xl"
-			>
-				<p>o dispozici {flat.layout}</p>
-				<p>a celkové ploše {flat.area} m<sup>2</sup></p>
-			</div>
-			<p class="font-semibold text-center w-[80vw] lg:w-[50vw]">
-				Nebytová jednotka - ubytovací jednotka č. {flat.id} o dispozici {
-					flat.layout
-				} a celkové podlahové ploše {flat.area} m<sup>2</sup> se nachází v
-				{
-					flat.floor === "1PP"
-						? "1. přízemním podlaží"
-						: "1. a 2. nadzemním podlaží"
-				} bytového domu ve Vimperku. {
-					flat.cellar === "ano"
-						? "K jednotce náleží sklepní kóje."
-						: ""
-				} Prakticky řešený interiér nabízí příjemné zázemí vhodné jak pro
-				vlastní užívání, tak i jako investiční příležitost.
-			</p>
-			<LinkButton
-				text="Mám zájem o tuto jednotku"
-				href="#Contact"
-				arrow={false}
-				classList="hover-dark font-semibold"
-			/>
-		</div>
-		<div class="text-lg flex flex-col gap-5 lg:gap-0 lg:flex-row lg:justify-between w-max lg:w-full lg:max-w-220 border-y py-7.5">
-			<a
-				download
-				href={"/flats_cards/".concat(flat.card)}
-				class="flex items-center hover:cursor-pointer"
-			>
-				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
-				<span class="font-semibold w-max">KARTA<br />JEDNOTKY</span>
-			</a>
-			<div class="flex items-center hover:cursor-pointer">
-				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
-				<span class="font-semibold w-max">TECHNICKÝ POPIS<br />DOMU</span>
-			</div>
-			<div class="flex items-center hover:cursor-pointer">
-				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
-				<span class="font-semibold w-max">STANDARDY<br />STAVBY</span>
-			</div>
-			<div class="flex items-center hover:cursor-pointer">
-				<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-[9px]" />
-				<span class="font-semibold w-max">ENERGETICKÝ<br />ŠTÍTEK</span>
-			</div>
-		</div>
-		<div class="flex flex-col items-center gap-24">
-			<Image src={flat.flatPlan} alt="Půdorys bytu" class="w-[70vw] lg:w-[60vw]" />
-			<div class="flex flex-col items-center gap-8">
-				<h4 class="text-darkgreen font-semibold text-2xl">
-					POZICE V BUDOVĚ
-				</h4>
-				{
-					flat.floor === "1PP" ? (
-						<Image src={floorPP} alt="1. PP" class="w-[50vw]" />
-					) : (
-						<Image
-							src={floorNP}
-							alt="1. a 2. NP"
-							class="w-[80vw] lg:w-[50vw]"
-						/>
-					)
-				}
-			</div>
-			<div class="flex flex-col items-center gap-8">
-				<h4 class="text-darkgreen font-semibold text-2xl">
-					POZICE NA PODLAŽÍ
-				</h4>
-				<Image
-					src={flat.floorPlan}
-					alt="Půdorys podlaží"
-					class="w-[80vw] lg:w-[50vw]"
-				/>
-			</div>
-		</div>
-	</section>
-	<section id="Params" class="mt-25 flex flex-col items-center">
-		<h2>PARAMETRY</h2>
-		<ul class="text-lg w-[80vw] lg:w-[60vw]">
-			<li><span>Dispozice</span><span>{flat.layout}</span></li>
-			<li><span>Celková plocha</span><span>{flat.area} m<sup>2</sup></span></li>
-			<li><span>Podlahová plocha</span><span>{flat.floorArea} m<sup>2</sup></span></li>
-			<li><span>Orientace</span><span>{flat.orientation}</span></li>
-			<li><span>Cena</span><span>{flat.price}</span></li>
-			<li><span>Podlaží</span><span>{flat.floor}</span></li>
-			<li><span>Sklep/komora</span><span>{flat.cellar}</span></li>
-			<li><span>Stav jendotky</span><span>{flat.state}</span></li>
-			<li><span>Parkování</span><span>{flat.parking}</span></li>
-		</ul>
-	</section>
-	<section
-		id="About"
-		class="mt-25 flex flex-col items-center mx-[5vw] lg:mx-[30vw] text-center"
-	>
-		<h2>O PROJEKTU</h2>
-		<p>
-			Projekt Apartmány U Brány Šumavy nabízí ideální kombinací moderní
-			architekruty a klidného prostředí Šumavy. Bydlení je navrženo s
-			důrazem na komfort, funkčnost a maximální propojení s okolní
-			přírodou.
-		</p>
-		<p>
-			Každý apartmán poskytuje dostatek prostoru, světla a kvalitních
-			materiálů pro pohodlné bydlení nebo rekreační využití po celý rok.
-		</p>
-	</section>
+	<UnitInfo flat={flat} />
+	<Params flat={flat} />
+	<ShortAbout />
 	<Gallery showButton={false} />
 	<Contact />
 </Layout>

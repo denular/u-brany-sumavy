@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets";
+import LinkButton from "#components/LinkButton.astro";
+import { FileText } from "@lucide/astro";
+import floorPP from "#assets/build/building_front_filled_1pp.svg";
+import floorNP from "#assets/build/building_front_filled_1np_2np.svg";
+
+const { flat } = Astro.props;
+---
+
+<section id="UnitInfo" class="mt-25 flex flex-col items-center gap-20 lg:gap-40">
+	<div class="flex flex-col items-center gap-10">
+		<div
+			class="flex w-[80vw] items-center justify-between text-green text-center text-3xl lg:text-5xl font-light"
+		>
+			{
+				flat.id === 1 ? (
+					<span class="text-gray">&#10229;</span>
+				) : (
+					<a
+						href={"/flats/".concat((flat.id - 1).toString())}
+						class="hover:cursor-pointer hover:scale-115 transition duration-300"
+					>
+						&#10229;
+					</a>
+				)
+			}
+			<h4>Ubytovací jednotka č. {flat.id}</h4>
+			{
+				flat.id === 12 ? (
+					<span class="text-gray">&#10230;</span>
+				) : (
+					<a
+						href={"/flats/".concat((flat.id + 1).toString())}
+						class="hover:cursor-pointer hover:scale-115 transition duration-300"
+					>
+						&#10230;
+					</a>
+				)
+			}
+		</div>
+		<hr class="w-[20vw] border-green" />
+		<div
+			class="flex flex-col items-center text-green font-semibold text-xl"
+		>
+			<p>o dispozici {flat.layout}</p>
+			<p>a celkové ploše {flat.area} m<sup>2</sup></p>
+		</div>
+		<p class="font-semibold text-center w-[80vw] lg:w-[50vw]">
+			Nebytová jednotka - ubytovací jednotka č. {flat.id} o dispozici {
+				flat.layout
+			} a celkové podlahové ploše {flat.area} m<sup>2</sup> se nachází v
+			{
+				flat.floor === "1PP"
+					? "1. přízemním podlaží"
+					: "1. a 2. nadzemním podlaží"
+			} bytového domu ve Vimperku. {
+				flat.cellar === "ano"
+					? "K jednotce náleží sklepní kóje."
+					: ""
+			} Prakticky řešený interiér nabízí příjemné zázemí vhodné jak pro
+			vlastní užívání, tak i jako investiční příležitost.
+		</p>
+		<LinkButton
+			text="Mám zájem o tuto jednotku"
+			href="#Contact"
+			arrow={false}
+			classList="hover-dark font-semibold"
+		/>
+	</div>
+	<div class="text-lg flex flex-col gap-5 lg:gap-0 lg:flex-row lg:justify-between w-max lg:w-full lg:max-w-220 border-y py-7.5">
+		<a
+			download
+			href={"/flats_cards/".concat(flat.card)}
+			class="flex items-center hover:cursor-pointer"
+		>
+			<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-2.25" />
+			<span class="font-semibold w-max">KARTA<br />JEDNOTKY</span>
+		</a>
+		<div class="flex items-center hover:cursor-pointer">
+			<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-2.25" />
+			<span class="font-semibold w-max">TECHNICKÝ POPIS<br />DOMU</span>
+		</div>
+		<div class="flex items-center hover:cursor-pointer">
+			<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-2.25" />
+			<span class="font-semibold w-max">STANDARDY<br />STAVBY</span>
+		</div>
+		<div class="flex items-center hover:cursor-pointer">
+			<FileText color="#9faa87" size={56} class="stroke-1 -translate-x-2.25" />
+			<span class="font-semibold w-max">ENERGETICKÝ<br />ŠTÍTEK</span>
+		</div>
+	</div>
+	<div class="flex flex-col items-center gap-24">
+		<Image src={flat.flatPlan} alt="Půdorys bytu" class="w-[70vw] lg:w-[60vw]" />
+		<div class="flex flex-col items-center gap-8">
+			<h4 class="text-darkgreen font-semibold text-2xl">
+				POZICE V BUDOVĚ
+			</h4>
+			{
+				flat.floor === "1PP" ? (
+					<Image src={floorPP} alt="1. PP" class="w-[50vw]" />
+				) : (
+					<Image
+						src={floorNP}
+						alt="1. a 2. NP"
+						class="w-[80vw] lg:w-[50vw]"
+					/>
+				)
+			}
+		</div>
+		<div class="flex flex-col items-center gap-8">
+			<h4 class="text-darkgreen font-semibold text-2xl">
+				POZICE NA PODLAŽÍ
+			</h4>
+			<Image
+				src={flat.floorPlan}
+				alt="Půdorys podlaží"
+				class="w-[80vw] lg:w-[50vw]"
+			/>
+		</div>
+	</div>
+</section>

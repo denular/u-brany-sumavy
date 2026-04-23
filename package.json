@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "ubranysumavy",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -10,6 +10,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
+  },
+  "imports": {
+    "#assets/*": "./src/assets/*",
+    "#components/*": "./src/components/*",
+    "#data/*": "./src/data/*",
+    "#layouts/*": "./src/layouts/*",
+    "#styles/*": "./src/styles/*"
   },
   "dependencies": {
     "@astrojs/vercel": "^10.0.4",
