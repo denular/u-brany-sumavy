@@ -12,7 +12,7 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 
 <section id="Flats" class="mx-[4vw] mt-25 flex flex-col items-center gap-10">
 	<div class="w-full flex flex-col gap-4 lg:flex-row lg:gap-0 lg:justify-around">
-		<h1 class="w-max">BYTY<br />A CENÍK</h1>
+		<h1 class="w-max">APARTMÁNY<br />A CENÍK</h1>
 		<p class="text-sm font-semibold">
 			Prohlédněte si aktuální nabídku apartmánů v projektu<br /> Apartmány U
 			Brány Šumavy
@@ -22,11 +22,11 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 		<div class="flex flex-col gap-6 items-center">
 			<div class="flex">
 				<label class="w-31 py-1 border border-green rounded-l-full text-black font-medium text-center has-[input:checked]:bg-green has-[input:checked]:text-white hover:bg-black hover:text-green hover:cursor-pointer">
-					<input hidden checked name="floor" id="radioPP" type="radio" />
+					<input hidden name="floor" id="radioPP" type="radio" />
 					1PP
 				</label>
 				<label class="w-31 py-1 border border-green rounded-r-full text-black font-medium text-center has-[input:checked]:bg-green has-[input:checked]:text-white hover:bg-black hover:text-green hover:cursor-pointer">
-					<input hidden name="floor" id="radioNP" type="radio" />
+					<input hidden checked name="floor" id="radioNP" type="radio" />
 					1NP + 2NP
 				</label>
 			</div>
@@ -42,7 +42,7 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 				>
 					<a href={`flats/${flat.id}`} class="flex flex-col gap-10">
 						<h4 class="text-center text-green text-5xl font-light">
-							Ubytovací jednotka č. {flat.id}
+							Apartmán č. {flat.id}
 						</h4>
 						<div class="text-center text-green text-lg font-semibold">
 							<p>{flat.layout} {flat.area}m<sup>2</sup></p>
@@ -55,7 +55,7 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 	</div>
 	<table id="flatsTable" class="hidden lg:table w-full mt-10 text-center text-green">
 		<tr class="align-top text-black">
-			<th>Byt č.</th>
+			<th>Apartmán č.</th>
 			<th class="min-w-20.5">Podlaží</th>
 			<th class="flex flex-col items-center gap-1">
 				Dispozice
@@ -108,7 +108,7 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 	<div class="text-green flex flex-col w-[80vw] items-center lg:hidden">
 		{flats.map(flat => (
 			<a href={`/flats/${flat.id}`} class="border-b border-darkgreen py-3.5 w-full flex flex-col gap-7 items-center hover:bg-gray">
-				<span class="font-semibold">Ubytovací jednotka č. {flat.id}</span>
+				<span class="font-semibold">Apartmán č. {flat.id}</span>
 				<div class="flex w-full justify-around">
 					<span>{flat.layout}</span>
 					<span>{flat.area} m<sup>2</sup></span>
@@ -354,7 +354,7 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 
 	const building = document.getElementById("building") as HTMLElement;
 
-	let selFloor: HTMLElement = groupPP;
+	let selFloor: HTMLElement = groupNP;
 
 	const clearP = () => {
 		groupPP.classList.add("opacity-0");
