@@ -1,26 +1,26 @@
-<section id="Contact" class="mx-[4vw] mt-25 flex flex-col gap-20 items-center">
+<section id="Contact" class="mx-[4vw] mt-25 flex flex-col gap-14 items-center">
 	<h1 class="text-center w-min md:w-max">KONTAKTUJTE NÁS</h1>
 	<form
 		id="contact-form"
 		method="POST"
 		class="w-[80vw] max-w-150 text-darkgreen flex flex-col gap-[2em] items-center"
 	>
-		<fieldset class="flex flex-col w-full items-center gap-[4em]">
+		<fieldset class="flex flex-col w-full items-center gap-[3em] text-lg">
 			<label>
-				Jméno
-				<input required name="firstName" type="text" />
+				<!-- Jméno -->
+				<input required name="firstName" type="text" placeholder="Jméno" class="px-[0.4em] placeholder-green" />
 			</label>
 			<label>
-				Příjmení
-				<input required name="surName" type="text" />
+				<!-- Příjmení -->
+				<input required name="surName" type="text" placeholder="Příjmení" class="px-[0.4em] placeholder-green" />
 			</label>
 			<label>
-				Email
-				<input required name="email" type="email" />
+				<!-- Email -->
+				<input required name="email" type="email" placeholder="Email" class="px-[0.4em] placeholder-green" />
 			</label>
 			<label>
-				Zpráva
-				<textarea required name="message" rows="3" class="px-[0.4em] py-[0.2em]"></textarea>
+				<!-- Zpráva -->
+				<textarea required name="message" rows="1" class="px-[0.4em] py-[0.2em] placeholder-green" placeholder="Zpráva"></textarea>
 			</label>
 		</fieldset>
 		<label
@@ -48,12 +48,6 @@
 					>.
 				</p>
 			</details>
-		</label>
-		<label
-			class="grid grid-flow-col auto-cols-max gap-6 items-center text-sm"
-		>
-			<input name="newsletter" type="checkbox" class="size-5 accent-black/50 hover:accent-green" />
-			Souhlasím se zasíláním novinek
 		</label>
 		<button
 			type="submit"

@@ -44,19 +44,19 @@
 	@apply before:content-[attr(data-text)] before:block before:font-bold before:h-0 before:invisible
 }
 
-#Flats tr {
+#Details tr {
 	@apply border-b border-white last:border-green
 }
 
-#Flats th {
+#Details th {
 	@apply pb-[1em] first:pl-2 last:pr-2
 }
 
-#Flats td {
+#Details td {
 	@apply py-[2em]
 }
 
-#Flats tr:hover td {
+#Details tr:hover td {
 	@apply bg-gray border-y border-green transition duration-150
 }
 

@@ -7,11 +7,11 @@ import Building from "#data/building.astro";
 import FloorPlanPP from "#data/floorPlanPP.astro";
 import FloorPlanNP from "#data/floorPlanNP.astro";
 
-const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
+const filterOptions = ["1+kk", "2+kk", "4+kk"];
 ---
 
 <section id="Flats" class="mx-[4vw] mt-25 flex flex-col items-center gap-10">
-	<div class="w-full flex flex-col gap-4 lg:flex-row lg:gap-0 lg:justify-around">
+	<div class="w-full flex flex-col gap-4 lg:flex-row lg:gap-0 lg:px-[8%] lg:justify-between">
 		<h1 class="w-max">APARTMÁNY<br />A CENÍK</h1>
 		<p class="text-sm font-semibold">
 			Prohlédněte si aktuální nabídku apartmánů v projektu<br /> Apartmány U
@@ -20,14 +20,14 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 	</div>
 	<div id="floorPlans" class="flex flex-col gap-20 items-center">
 		<div class="flex flex-col gap-6 items-center">
-			<div class="flex">
-				<label class="w-31 py-1 border border-green rounded-l-full text-black font-medium text-center has-[input:checked]:bg-green has-[input:checked]:text-white hover:bg-black hover:text-green hover:cursor-pointer">
+			<div class="flex flex-col gap-2 md:gap-0 md:flex-row">
+				<label class="w-60 py-1 border border-green rounded-full md:rounded-r-none md:rounded-l-full text-black font-medium text-center text-nowrap has-[input:checked]:bg-green has-[input:checked]:text-white hover:bg-black hover:text-green hover:cursor-pointer">
 					<input hidden name="floor" id="radioPP" type="radio" />
-					1PP
+					Přízemní apartmány
 				</label>
-				<label class="w-31 py-1 border border-green rounded-r-full text-black font-medium text-center has-[input:checked]:bg-green has-[input:checked]:text-white hover:bg-black hover:text-green hover:cursor-pointer">
+				<label class="w-60 py-1 border border-green rounded-full md:rounded-l-none md:rounded-r-full text-black font-medium text-center has-[input:checked]:bg-green has-[input:checked]:text-white hover:bg-black hover:text-green hover:cursor-pointer">
 					<input hidden checked name="floor" id="radioNP" type="radio" />
-					1NP + 2NP
+					Mezonety
 				</label>
 			</div>
 			<Building />
@@ -53,6 +53,9 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 			))}
 		</div>
 	</div>
+</section>
+<section id="Details" class="mx-[4vw] mt-25 flex flex-col items-center gap-10">
+	<h1 class="lg:ml-[8%] self-start">DETAILNÍ</br>INFORMACE</h1>
 	<table id="flatsTable" class="hidden lg:table w-full mt-10 text-center text-green">
 		<tr class="align-top text-black">
 			<th>Apartmán č.</th>
@@ -72,11 +75,12 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 					}
 				</select>
 			</th>
+			<th>Celková<br />plocha (m<sup>2</sup>)</th>
+			<th>Orientace</th>
 			<th class="min-w-41">Venkovní prostor</th>
 			<th>Sklep/komora</th>
-			<th>Orientace</th>
-			<th>Celková<br />plocha (m<sup>2</sup>)</th>
-			<th>Cena<br />příslušné DPH</th>
+			<th>Parkovací stání</th>
+			<th>Cena</th>
 		</tr>
 		{
 			flats.map((flat) => (
@@ -96,10 +100,11 @@ const filterOptions = ["1+kk", "2+kk", "3+kk", "4+kk"];
 					</td>
 					<td>{flat.floor}</td>
 					<td>{flat.layout}</td>
+					<td>{flat.area}</td>
+					<td>{flat.orientation}</td>
 					<td>{flat.outside}</td>
 					<td>{flat.cellar}</td>
-					<td>{flat.orientation}</td>
-					<td>{flat.area}</td>
+					<td>{flat.parking}</td>
 					<td>{flat.price}</td>
 				</tr>
 			))

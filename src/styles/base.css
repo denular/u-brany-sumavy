@@ -25,7 +25,7 @@
 		line-height: 100%;
 		color: var(--color-green);
 		font-weight: var(--font-weight-semibold);
-		@apply mb-[2em];
+		@apply mb-[1em];
 		@apply lg:text-4xl;
 	}
 
@@ -42,7 +42,7 @@
 		line-height: 120%;
 		font-weight: var(--font-weight-light);
 		color: var(--color-green);
-		@apply mb-[2em];
+		@apply mb-[1em];
 		@apply lg:text-4xl
 	}
 
