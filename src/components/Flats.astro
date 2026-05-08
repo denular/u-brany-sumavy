@@ -113,21 +113,19 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		</div>
 		{
 			flats.map((flat) => (
-				<div class="table-row flatRow" data-linkarea data-layout={flat.layout}>
-					<div class="table-cell">
-						<a data-link href={`flats/${flat.id}`} class="font-bold">
-							{flat.id}
-						</a>
+				<a href={`flats/${flat.id}`}>
+					<div class="table-row flatRow " data-layout={flat.layout}>
+						<div class="table-cell font-bold">{flat.id}</div>
+						<div class="table-cell">{flat.floor}</div>
+						<div class="table-cell">{flat.layout}</div>
+						<div class="table-cell">{flat.area}</div>
+						<div class="table-cell">{flat.orientation}</div>
+						<div class="table-cell">{flat.outside}</div>
+						<div class="table-cell">{flat.cellar}</div>
+						<div class="table-cell">{flat.parking}</div>
+						<div class="table-cell">{flat.price}</div>
 					</div>
-					<div class="table-cell">{flat.floor}</div>
-					<div class="table-cell">{flat.layout}</div>
-					<div class="table-cell">{flat.area}</div>
-					<div class="table-cell">{flat.orientation}</div>
-					<div class="table-cell">{flat.outside}</div>
-					<div class="table-cell">{flat.cellar}</div>
-					<div class="table-cell">{flat.parking}</div>
-					<div class="table-cell">{flat.price}</div>
-				</div>
+				</a>
 			))
 		}
 	</div>
