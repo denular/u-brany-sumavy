@@ -1,103 +1,145 @@
 ---
-import { Image } from "astro:assets";
-import LinkButton from "#components/LinkButton.astro";
-import {MoveLeft, MoveRight} from "@lucide/astro"
+import { Image } from 'astro:assets'
+import LinkButton from '#components/LinkButton.astro'
+import { MoveLeft, MoveRight } from '@lucide/astro'
 
+const { showButton = true } = Astro.props
 
-const { images, showButton = true} = Astro.props;
+import img1 from '#assets/Image_galllery_asset_placeholder_wide.jpg'
+const images = [
+	{ src: img1, alt: 'Obrázek 1' },
+	{ src: img1, alt: 'Obrázek 2' },
+	{ src: img1, alt: 'Obrázek 3' },
+	{ src: img1, alt: 'Obrázek 4' },
+	{ src: img1, alt: 'Obrázek 5' },
+	{ src: img1, alt: 'Obrázek 6' },
+	{ src: img1, alt: 'Obrázek 7' },
+	{ src: img1, alt: 'Obrázek 8' },
+	{ src: img1, alt: 'Obrázek 9' },
+]
 ---
 
 <section id="Gallery" class="mt-25 flex flex-col gap-20 items-center">
 	<div class="relative">
-		<div id="gallery-carousel" class="max-h-[calc(90vh-144px)] flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-			{images.map((img)=> (
-				<Image src={img.src} alt={img.alt} class="gallery-image snap-center object-cover size-full"/>
-			))}
+		<div
+			id="gallery-carousel"
+			class="h-[calc(90vh-144px)] flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+		>
+			{
+				images.map((img) => (
+					<Image
+						src={img.src}
+						alt={img.alt}
+						class="gallery-image snap-center object-cover size-full"
+					/>
+				))
+			}
 		</div>
-		<button id="move-left" class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 -translate-y-1/2 left-5 border border-white rounded-full">
+		<button
+			id="move-left"
+			class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 -translate-y-1/2 left-5 border border-white rounded-full"
+		>
 			<MoveLeft class="stroke-white stroke-1 p-1 size-8" />
 		</button>
-		<button id="move-right" class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 -translate-y-1/2 right-5 border border-white rounded-full">
+		<button
+			id="move-right"
+			class="hover:scale-120 duration-200 hover:cursor-pointer absolute top-1/2 -translate-y-1/2 right-5 border border-white rounded-full"
+		>
 			<MoveRight class="stroke-white stroke-1 p-1 size-8" />
 		</button>
 		<div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-2">
-			{ images.map(()=>(
-				<button class="gallery-dot hover:scale-120 hover:cursor-pointer duration-200">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						class="gallery-dot-marker size-2.5 fill-white stroke-none stroke-2"
-					>
-						<circle r="10" cx="12" cy="12" />
-					</svg>
-				</button>
-			))}
+			{
+				images.map(() => (
+					<button class="gallery-dot hover:scale-120 hover:cursor-pointer duration-200">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							class="gallery-dot-marker size-2.5 fill-white stroke-none stroke-2"
+						>
+							<circle r="10" cx="12" cy="12" />
+						</svg>
+					</button>
+				))
+			}
 		</div>
 	</div>
 
-	{ showButton
-		? <LinkButton text="Nabídka apartmánů" href="#Flats" classList="hover-dark text-sm" />
-		: ""
+	{
+		showButton ? (
+			<LinkButton
+				text="Nabídka apartmánů"
+				href="#Flats"
+				classList="hover-dark text-sm"
+			/>
+		) : (
+			''
+		)
 	}
 </section>
 
 <script>
-	const dots = [...document.getElementsByClassName("gallery-dot")] as HTMLElement[];
-	const dotsMarkers = [...document.getElementsByClassName("gallery-dot-marker")] as HTMLElement[];
-	const images = [...document.getElementsByClassName("gallery-image")] as HTMLElement[];
-	const carousel = document.getElementById("gallery-carousel") as HTMLElement;
-	const moveLeft = document.getElementById("move-left") as HTMLElement;
-	const moveRigth = document.getElementById("move-right") as HTMLElement;
+	const dots = [
+		...document.getElementsByClassName('gallery-dot'),
+	] as HTMLElement[]
+	const dotsMarkers = [
+		...document.getElementsByClassName('gallery-dot-marker'),
+	] as HTMLElement[]
+	const images = [
+		...document.getElementsByClassName('gallery-image'),
+	] as HTMLElement[]
+	const carousel = document.getElementById('gallery-carousel') as HTMLElement
+	const moveLeft = document.getElementById('move-left') as HTMLElement
+	const moveRigth = document.getElementById('move-right') as HTMLElement
 
 	const updateDots = () => {
-		const center = carousel?.scrollLeft + carousel?.clientWidth / 2;
+		const center = carousel?.scrollLeft + carousel?.clientWidth / 2
 
-		let activeIndex = 0;
-		let closestDistance = Infinity;
+		let activeIndex = 0
+		let closestDistance = Infinity
 
 		images.forEach((image, index) => {
-			const imageCenter = image.offsetLeft + image.clientWidth / 2;
-			const distance = Math.abs(center - imageCenter);
+			const imageCenter = image.offsetLeft + image.clientWidth / 2
+			const distance = Math.abs(center - imageCenter)
 
 			if (distance < closestDistance) {
-				closestDistance = distance;
-				activeIndex = index;
+				closestDistance = distance
+				activeIndex = index
 			}
-		});
+		})
 
 		dotsMarkers.forEach((dot, index) => {
-			dot.classList.toggle("fill-green", index === activeIndex);
-			dot.classList.toggle("fill-white", index !== activeIndex);
-		});
-	};
+			dot.classList.toggle('fill-green', index === activeIndex)
+			dot.classList.toggle('fill-white', index !== activeIndex)
+		})
+	}
 
-	carousel?.addEventListener("scroll", () => {
-		requestAnimationFrame(() => updateDots());
-	});
+	carousel?.addEventListener('scroll', () => {
+		requestAnimationFrame(() => updateDots())
+	})
 
 	dots.forEach((dot, index) => {
-		dot.addEventListener("click", () => {
-			images[index]?.scrollIntoView({ block: "nearest", inline: "center" });
-		});
-	});
+		dot.addEventListener('click', () => {
+			images[index]?.scrollIntoView({ block: 'nearest', inline: 'center' })
+		})
+	})
 
-	moveLeft?.addEventListener("click", () => {
+	moveLeft?.addEventListener('click', () => {
 		if (images[0] !== undefined) {
-			carousel.scrollLeft -= images[0].clientWidth;
+			carousel.scrollLeft -= images[0].clientWidth
 		}
-	});
+	})
 
-	moveRigth?.addEventListener("click", () => {
+	moveRigth?.addEventListener('click', () => {
 		if (images[0] !== undefined) {
-			carousel.scrollLeft += images[0].clientWidth;
+			carousel.scrollLeft += images[0].clientWidth
 		}
-	});
+	})
 
 	images.forEach((image) => {
-		image.addEventListener("click", () => {
-			image.scrollIntoView({ block: "nearest", inline: "center" });
-		});
-	});
+		image.addEventListener('click', () => {
+			image.scrollIntoView({ block: 'nearest', inline: 'center' })
+		})
+	})
 
-	updateDots();
+	updateDots()
 </script>

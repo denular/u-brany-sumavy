@@ -44,19 +44,19 @@
 	@apply before:content-[attr(data-text)] before:block before:font-bold before:h-0 before:invisible
 }
 
-#Details tr {
+#Details div.table-row {
 	@apply border-b border-white last:border-green
 }
 
-#Details th {
-	@apply pb-[1em] first:pl-2 last:pr-2
+#Details div.table-header {
+	@apply pb-[1em] first:pl-2 last:pr-2 font-semibold
 }
 
-#Details td {
+#Details div.table-cell:not(.table-header) {
 	@apply py-[2em]
 }
 
-#Details tr:hover td {
+#Details div.table-row:hover div.table-cell:not(.table-header) {
 	@apply bg-gray border-y border-green transition duration-150
 }
 
