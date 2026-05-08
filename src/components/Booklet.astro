@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets'
 import { MoveLeft, MoveRight } from '@lucide/astro'
 
 type Page = {
@@ -12,7 +11,6 @@ type Page = {
 const matches = import.meta.glob<{ default: Page }>('../assets/booklet/*.png', {
 	eager: true,
 })
-console.log(matches)
 const pages = Object.values(matches).map((page) => page.default)
 ---
 

@@ -1,15 +1,20 @@
 ---
-const { id, classList } = Astro.props;
+const { id, classList } = Astro.props
 ---
 
 <nav id={id} class={classList}>
 	<ul>
-		<li><a href="#" data-text="Úvod">Úvod</a></li>
-		<li><a href="#About" data-text="O projektu">O projektu</a></li>
-		<li><a href="#Flats" data-text="Apartmány a ceník">Apartmány a ceník</a></li>
-		<li><a href="#Gallery" data-text="Galerie">Galerie</a></li>
-		<li><a href="#Directions" data-text="Lokalita">Lokalita</a></li>
-		<li><a href="#Financing" data-text="Investiční potenciál">Investiční potenciál</a></li>
+		<li><a href="/#" data-text="Úvod">Úvod</a></li>
+		<li><a href="/#About" data-text="O projektu">O projektu</a></li>
+		<li>
+			<a href="/#Flats" data-text="Apartmány a ceník">Apartmány a ceník</a>
+		</li>
+		<li><a href="/#Gallery" data-text="Galerie">Galerie</a></li>
+		<li><a href="/#Directions" data-text="Lokalita">Lokalita</a></li>
+		<li>
+			<a href="/#Financing" data-text="Investiční potenciál"
+				>Investiční potenciál</a>
+		</li>
 		<li><a href="#Contact" data-text="Kontakty">Kontakty</a></li>
 	</ul>
 </nav>

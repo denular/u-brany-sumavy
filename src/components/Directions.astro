@@ -1,10 +1,14 @@
 ---
 import { Image } from 'astro:assets'
 import buildRect from '#assets/Image_asset_764x535_2x.jpg'
-import buildSquare from '#assets/Image_asset_764x700_2x.jpg'
-import map from '#assets/mapa.jpg'
-import LinkButton from '#components/LinkButton.astro'
 import Booklet from '#components/Booklet.astro'
+import type { ArgumentsData } from '#types/arguments.ts'
+
+interface Props {
+	argumentsData: ArgumentsData
+}
+
+const { argumentsData } = Astro.props
 ---
 
 <section id="Directions" class="mt-25 flex flex-col gap-25 items-center">
@@ -21,9 +25,7 @@ import Booklet from '#components/Booklet.astro'
 			<div class="lg:px-[25%] text-justify">
 				<h3 class="text-left">VAŠE MÍSTO NA ŠUMAVĚ</h3>
 				<p>
-					Apartmány U Brány Šumavy se nacházejí v klidné lokalitě na dosah
-					šumavské přírody, s výbornou dostupností do okolních obcí i
-					sportovních areálů.
+					{argumentsData.locality.text}
 				</p>
 			</div>
 		</div>

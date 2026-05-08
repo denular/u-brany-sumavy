@@ -1,28 +1,24 @@
 ---
-export const prerender = true;
+export const prerender = true
 
-import { flats } from "#data/flats.ts";
-import Layout from "#layouts/Layout.astro";
-import UnitInfo from "#components/flats/UnitInfo.astro";
-import Params from "#components/flats/Params.astro";
-import ShortAbout from "#components/flats/ShortAbout.astro";
-import Gallery from "#components/Gallery.astro";
-import Contact from "#components/Contact.astro";
+import { flats } from '#data/flats.ts'
+import Layout from '#layouts/Layout.astro'
+import UnitInfo from '#components/flats/UnitInfo.astro'
+import Gallery from '#components/Gallery.astro'
+import Contact from '#components/Contact.astro'
 
 export function getStaticPaths() {
 	return flats.map((flat) => ({
 		params: { flat: flat.id.toString() },
 		props: { flat },
-	}));
+	}))
 }
 
-const { flat } = Astro.props;
+const { flat } = Astro.props
 ---
 
 <Layout>
 	<UnitInfo flat={flat} />
-	<Params flat={flat} />
-	<ShortAbout />
-	<Gallery images={flat.gallery} showButton={false} />
+	<Gallery showButton={false} />
 	<Contact />
 </Layout>

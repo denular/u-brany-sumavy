@@ -1,13 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import buildRect from "#assets/Image_asset_764x535_2x.jpg";
-import buildSquare from "#assets/Image_asset_764x700_2x.jpg";
-import LinkButton from "#components/LinkButton.astro";
+import { Image } from 'astro:assets'
+import buildRect from '#assets/Image_asset_764x535_2x.jpg'
+import buildSquare from '#assets/Image_asset_764x700_2x.jpg'
+import LinkButton from '#components/LinkButton.astro'
+import type { ArgumentsData } from '#types/arguments.ts'
+
+interface Props {
+	argumentsData: ArgumentsData
+}
+
+const { argumentsData } = Astro.props
 ---
 
 <section id="About" class="mx-[4vw] mt-25 flex flex-col gap-20 items-center">
 	<h1 class="lg:ml-[8%] self-stretch">O PROJEKTU</h1>
-	<div class="flex flex-col gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[55%_45%] items-center">
+	<div
+		class="flex flex-col gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[55%_45%] items-center"
+	>
 		<Image
 			src={buildRect}
 			alt="Pohled na objekt"
@@ -16,29 +25,28 @@ import LinkButton from "#components/LinkButton.astro";
 		<div class="lg:px-[20%] text-justify">
 			<h3 class="text-left">VAŠE MÍSTO NA ŠUMAVĚ</h3>
 			<p>
-				Apartmány U Brány Šumavy přinášejí moderní bydelní v klidném
-				prostředí jedné z nejkrásnějších obastí Šumavy. Projekt spojuje
-				kvalitní architekturu, přírodní charakter lokality a pohodlí
-				současného bydelní.
+				{argumentsData.about.text}
 			</p>
 		</div>
 	</div>
-	<div class="text-justify flex flex-col-reverse gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[45%_55%] items-center">
+	<div
+		class="text-justify flex flex-col-reverse gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[45%_55%] items-center"
+	>
 		<div class="lg:px-[20%]">
 			<h3 class="text-left">KOMFORTNÍ BYDLENÍ V PŘÍRODĚ</h3>
 			<p>
-				Projekt Apartmány U Brány Šumavy nabízí ideální kombinaci
-				moderní architektury a klidného prostředí Šumavy. Bydlení je
-				navrženo s důrazem na komfort, funkčnost a maximální propojení s
-				okolní přírodou.
-			</p>
-			<p>
-				Každý apartmán poskytuje dostatek prostoru, světla a kvalitních
-				materiálů pro pohodlné bydlení nebo rekreační využití po celý
-				rok.
+				{argumentsData.aboutLocality.text}
 			</p>
 		</div>
-		<Image src={buildSquare} alt="Pohled na objekt" class="max-h-[calc(80vh-144px)] aspect-video object-cover" />
+		<Image
+			src={buildSquare}
+			alt="Pohled na objekt"
+			class="max-h-[calc(80vh-144px)] aspect-video object-cover"
+		/>
 	</div>
-	<LinkButton text="Domluvit prohlídku" href="#Contact" classList="hover-dark object-cover" />
+	<LinkButton
+		text="Domluvit prohlídku"
+		href="#Contact"
+		classList="hover-dark object-cover"
+	/>
 </section>

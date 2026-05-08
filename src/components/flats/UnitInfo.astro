@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets'
+
 const { flat } = Astro.props
 ---
 
-<section id="Heading" class="mt-25 flex flex-col items-center gap-20 lg:gap-40">
+<section id="Heading" class="mt-25 flex flex-col items-center gap-15 lg:gap-15">
 	<div
 		class="flex w-[80vw] items-center justify-between text-green text-center text-3xl lg:text-5xl font-light"
 	>
@@ -31,6 +33,23 @@ const { flat } = Astro.props
 				</a>
 			)
 		}
+	</div>
+	<div class="flex flex-col md:flex-row w-full items-center justify-center">
+		<a href={flat.infoCard.src}>
+			<Image
+				src={flat.infoCard}
+				alt="Info karta"
+				class="h-[calc(90vh-144px)] w-min object-contain"
+			/>
+		</a>
+
+		<a href={flat.floorCard.src}>
+			<Image
+				src={flat.floorCard}
+				alt="Karta půdorysu"
+				class="h-[calc(90vh-144px)] w-min object-contain"
+			/>
+		</a>
 	</div>
 	<!-- <div
 		class="text-lg flex flex-col gap-5 lg:gap-0 lg:flex-row lg:justify-between w-max lg:w-full lg:max-w-220 border-y py-7.5"
