@@ -48,6 +48,10 @@
 	@apply border-b border-white last:border-green
 }
 
+#Details a.table-row {
+	@apply border-b border-white last:border-green
+}
+
 #Details div.table-header {
 	@apply pb-[1em] first:pl-2 last:pr-2 font-semibold
 }
@@ -56,7 +60,7 @@
 	@apply py-[2em]
 }
 
-#Details div.table-row:hover div.table-cell:not(.table-header) {
+#Details a.table-row:hover div.table-cell:not(.table-header) {
 	@apply bg-gray border-y border-green transition duration-150
 }
 
@@ -100,17 +104,4 @@
 
 #Params li span {
 	@apply first:font-semibold
-}
-
-[data-linkarea] {
-	position: relative;
-}
-
-[data-link] {
-	&::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		z-index: 10;
-	}
 }
