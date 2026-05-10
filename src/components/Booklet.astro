@@ -12,9 +12,15 @@ const matches = import.meta.glob<{ default: Page }>('../assets/booklet/*.png', {
 	eager: true,
 })
 const pages = Object.values(matches).map((page) => page.default)
+
+const { section } = Astro.props
 ---
 
-<div class="relative flex gap-5 items-center mx-5">
+<div
+	id=`${section}-booklet`
+	class="relative flex gap-5 items-center mx-5"
+	data-booklet
+>
 	<button
 		id="move-page-left"
 		class="hover:scale-120 duration-200 hover:cursor-pointer border border-black rounded-full size-min"
@@ -62,69 +68,75 @@ const pages = Object.values(matches).map((page) => page.default)
 </div>
 
 <script>
-	const dots = [
-		...document.getElementsByClassName('booklet-dot'),
-	] as HTMLElement[]
-	const dotsMarkers = [
-		...document.getElementsByClassName('booklet-dot-marker'),
-	] as HTMLElement[]
-	const pages = [
-		...document.getElementsByClassName('booklet-page'),
-	] as HTMLElement[]
-	const carousel = document.getElementById('booklet-carousel') as HTMLElement
-	const moveLeft = document.getElementById('move-page-left') as HTMLElement
-	const moveRigth = document.getElementById('move-page-right') as HTMLElement
+	const init_booklet = (root: Element) => {
+		const dots = [
+			...root.getElementsByClassName('booklet-dot'),
+		] as HTMLElement[]
+		const dotsMarkers = [
+			...root.getElementsByClassName('booklet-dot-marker'),
+		] as HTMLElement[]
+		const pages = [
+			...root.getElementsByClassName('booklet-page'),
+		] as HTMLElement[]
+		const carousel = root.querySelector('#booklet-carousel') as HTMLElement
+		const moveLeft = root.querySelector('#move-page-left') as HTMLElement
+		const moveRigth = root.querySelector('#move-page-right') as HTMLElement
 
-	const updateDots = () => {
-		const center =
-			carousel.offsetLeft + carousel?.scrollLeft + carousel?.clientWidth / 2
+		const updateDots = () => {
+			const center =
+				carousel.offsetLeft + carousel?.scrollLeft + carousel?.clientWidth / 2
 
-		let activeIndex = 0
-		let closestDistance = Infinity
+			let activeIndex = 0
+			let closestDistance = Infinity
 
-		pages.forEach((page, index) => {
-			const pageCenter = page.offsetLeft + page.clientWidth / 2
-			const distance = Math.abs(center - pageCenter)
+			pages.forEach((page, index) => {
+				const pageCenter = page.offsetLeft + page.clientWidth / 2
+				const distance = Math.abs(center - pageCenter)
 
-			if (distance < closestDistance) {
-				closestDistance = distance
-				activeIndex = index
+				if (distance < closestDistance) {
+					closestDistance = distance
+					activeIndex = index
+				}
+			})
+
+			dotsMarkers.forEach((dot, index) => {
+				dot.classList.toggle('fill-green', index === activeIndex)
+				dot.classList.toggle('fill-white', index !== activeIndex)
+			})
+		}
+
+		carousel?.addEventListener('scroll', () => {
+			requestAnimationFrame(() => updateDots())
+		})
+
+		dots.forEach((dot, index) => {
+			dot.addEventListener('click', () => {
+				pages[index]?.scrollIntoView({ block: 'nearest', inline: 'center' })
+			})
+		})
+
+		moveLeft?.addEventListener('click', () => {
+			if (pages[0] !== undefined) {
+				carousel.scrollLeft -= pages[0].clientWidth
 			}
 		})
 
-		dotsMarkers.forEach((dot, index) => {
-			dot.classList.toggle('fill-green', index === activeIndex)
-			dot.classList.toggle('fill-white', index !== activeIndex)
+		moveRigth?.addEventListener('click', () => {
+			if (pages[0] !== undefined) {
+				carousel.scrollLeft += pages[0].clientWidth
+			}
 		})
+
+		pages.forEach((page) => {
+			page.addEventListener('click', () => {
+				page.scrollIntoView({ block: 'nearest', inline: 'center' })
+			})
+		})
+
+		updateDots()
 	}
 
-	carousel?.addEventListener('scroll', () => {
-		requestAnimationFrame(() => updateDots())
+	document.querySelectorAll('[data-booklet]').forEach((element) => {
+		init_booklet(element)
 	})
-
-	dots.forEach((dot, index) => {
-		dot.addEventListener('click', () => {
-			pages[index]?.scrollIntoView({ block: 'nearest', inline: 'center' })
-		})
-	})
-
-	moveLeft?.addEventListener('click', () => {
-		if (pages[0] !== undefined) {
-			carousel.scrollLeft -= pages[0].clientWidth
-		}
-	})
-
-	moveRigth?.addEventListener('click', () => {
-		if (pages[0] !== undefined) {
-			carousel.scrollLeft += pages[0].clientWidth
-		}
-	})
-
-	pages.forEach((page) => {
-		page.addEventListener('click', () => {
-			page.scrollIntoView({ block: 'nearest', inline: 'center' })
-		})
-	})
-
-	updateDots()
 </script>

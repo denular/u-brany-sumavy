@@ -3,6 +3,7 @@ import { Image } from 'astro:assets'
 import buildRect from '#assets/Image_asset_764x535_2x.jpg'
 import Booklet from '#components/Booklet.astro'
 import type { ArgumentsData } from '#types/arguments.ts'
+import LinkButton from './LinkButton.astro'
 
 interface Props {
 	argumentsData: ArgumentsData
@@ -22,14 +23,19 @@ const { argumentsData } = Astro.props
 				alt="Pohled na objekt"
 				class="max-h-[calc(80vh-144px)] aspect-video object-cover"
 			/>
-			<div class="lg:px-[25%] text-justify">
+			<div class="lg:px-[25%] flex flex-col text-justify items-center">
 				<h3 class="text-left">VAŠE MÍSTO NA ŠUMAVĚ</h3>
-				<p>
+				<p class="mb-5">
 					{argumentsData.locality.text}
 				</p>
+				<LinkButton
+					text="Více informací"
+					href="#directions-booklet"
+					classList="hover-dark text-sm"
+				/>
 			</div>
 		</div>
 	</div>
 	<hr class="w-[80vw] max-w-lg border-green" />
-	<Booklet />
+	<Booklet section="directions" />
 </section>

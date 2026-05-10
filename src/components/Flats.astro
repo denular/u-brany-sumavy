@@ -6,6 +6,7 @@ import { flats } from '#data/flats.ts'
 import Building from '#data/building.astro'
 import FloorPlanPP from '#data/floorPlanPP.astro'
 import FloorPlanNP from '#data/floorPlanNP.astro'
+import LinkButton from './LinkButton.astro'
 
 const filterOptions = ['1+kk', '2+kk', '4+kk']
 ---
@@ -75,19 +76,50 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 </section>
 <section id="Details" class="mx-[4vw] mt-25 flex flex-col items-center gap-10">
 	<h1 class="lg:ml-[8%] self-start">DETAILNÍ INFORMACE</h1>
-	<div
-		id="flatsTable"
-		class="hidden lg:table w-full mt-10 text-center text-green"
-	>
-		<div class="table-row align-top text-black">
-			<div class="table-header table-cell">Apartmán č.</div>
-			<div class="table-header table-cell" class="min-w-20.5">Podlaží</div>
-			<div
-				class="table-header table-cell"
-				class="flex flex-col items-center gap-1"
+	<div class="hidden w-full lg:flex flex-col gap-2">
+		<hr class="text-green" />
+		<div class="flex gap-5 items-center">
+			<span class="font-bold">Filtry:</span>
+			<label
+				class="link-button has-[input:checked]:bg-green has-[input:checked]:text-white has-[input:checked]:hover:border-green hover-dark"
 			>
-				Dispozice
-				<select
+				Vše
+				<input
+					checked
+					type="radio"
+					name="filter-layout"
+					value="All"
+					class="hidden"
+				/>
+			</label>
+			{
+				filterOptions.map((option) => (
+					<label class="link-button has-[input:checked]:bg-green has-[input:checked]:text-white has-[input:checked]:hover:border-green hover-dark">
+						{option}
+						<input
+							type="radio"
+							name="filter-layout"
+							value={option}
+							class="hidden"
+						/>
+					</label>
+				))
+			}
+		</div>
+		<hr class="text-green" />
+		<div
+			id="flatsTable"
+			class="hidden mt-7 lg:table w-full text-center text-green"
+		>
+			<div class="table-row align-top text-black">
+				<div class="table-header table-cell">Apartmán č.</div>
+				<div class="table-header table-cell min-w-40 w-min">Podlaží</div>
+				<div
+					class="table-header table-cell"
+					class="flex flex-col items-center gap-1"
+				>
+					Dispozice
+					<!-- <select
 					id="layout-filter"
 					name="Dispozice"
 					class="w-[60%] min-w-fit border border-green text-sm font-medium"
@@ -98,83 +130,93 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 							<option value={option}>{option}</option>
 						))
 					}
-				</select>
+				</select> -->
+				</div>
+				<div class="table-header table-cell">
+					Celková<br />plocha (m<sup>2</sup>)
+				</div>
+				<div class="table-header table-cell">Orientace</div>
+				<div class="table-header table-cell min-w-41 text-nowrap">
+					Venkovní prostor
+				</div>
+				<div class="table-header table-cell">Sklep/komora</div>
+				<div class="table-header table-cell">Parkovací stání</div>
+				<div class="table-header table-cell">Cena</div>
 			</div>
-			<div class="table-header table-cell">
-				Celková<br />plocha (m<sup>2</sup>)
-			</div>
-			<div class="table-header table-cell">Orientace</div>
-			<div class="table-header table-cell" class="min-w-41">
-				Venkovní prostor
-			</div>
-			<div class="table-header table-cell">Sklep/komora</div>
-			<div class="table-header table-cell">Parkovací stání</div>
-			<div class="table-header table-cell">Cena</div>
+			{
+				flats.map((flat) => (
+					<a
+						class="table-row flatRow"
+						data-layout={flat.layout}
+						href={`flats/${flat.id}`}
+					>
+						{/* <div class="table-row flatRow " > */}
+						<div class="table-cell font-bold">{flat.id}</div>
+						<div class="table-cell">{flat.floor}</div>
+						<div class="table-cell">{flat.layout}</div>
+						<div class="table-cell">{flat.area}</div>
+						<div class="table-cell">{flat.orientation}</div>
+						<div class="table-cell">{flat.outside}</div>
+						<div class="table-cell">{flat.cellar}</div>
+						<div class="table-cell">{flat.parking}</div>
+						<div class="table-cell">{flat.price}</div>
+						{/* </div> */}
+					</a>
+				))
+			}
 		</div>
-		{
-			flats.map((flat) => (
-				<a
-					class="table-row flatRow"
-					data-layout={flat.layout}
-					href={`flats/${flat.id}`}
-				>
-					{/* <div class="table-row flatRow " > */}
-					<div class="table-cell font-bold">{flat.id}</div>
-					<div class="table-cell">{flat.floor}</div>
-					<div class="table-cell">{flat.layout}</div>
-					<div class="table-cell">{flat.area}</div>
-					<div class="table-cell">{flat.orientation}</div>
-					<div class="table-cell">{flat.outside}</div>
-					<div class="table-cell">{flat.cellar}</div>
-					<div class="table-cell">{flat.parking}</div>
-					<div class="table-cell">{flat.price}</div>
-					{/* </div> */}
-				</a>
-			))
-		}
 	</div>
+
 	<div class="text-green flex flex-col w-[80vw] items-center lg:hidden">
 		{
 			flats.map((flat) => (
-				<a
-					href={`/flats/${flat.id}`}
-					class="border-b border-darkgreen py-3.5 w-full flex flex-col gap-7 items-center hover:bg-gray"
-				>
+				<div class="border-b border-darkgreen py-3.5 w-full flex flex-col gap-2 items-center hover:bg-gray">
 					<span class="font-semibold">Apartmán č. {flat.id}</span>
 					<div class="flex w-full justify-around">
 						<span>{flat.layout}</span>
 						<span>
 							{flat.area} m<sup>2</sup>
 						</span>
-						<span>{flat.orientation}</span>
+						{/* <span>{flat.outside}</span> */}
 					</div>
-					<span class="text-sm font-semibold">{flat.price}</span>
-				</a>
+					<span>{flat.floor}</span>
+					{/* <span class="text-sm font-semibold">{flat.price}</span> */}
+					{/* <LinkButton
+						text="Více informací"
+						href={`/flats/${flat.id}`}
+						classList="hover-dark text-xs"
+					/> */}
+					<a href={`/flats/${flat.id}`} class="underline">
+						Více informací
+					</a>
+				</div>
 			))
 		}
 	</div>
 </section>
 
 <script>
-	import Layout from '../layouts/Layout.astro'
+	const options = document.querySelectorAll('input[name=filter-layout]')
+	const table = document.querySelectorAll('#flatsTable a.flatRow')
 
-	const selector = document.getElementById('layout-filter') as HTMLSelectElement
-	const table = document.querySelectorAll('#flatsTable tr.flatRow')
+	options.forEach((option) => console.log(option))
 
-	const filterTable = () => {
-		const filter = selector.value
-
+	const filterTable = (event: Event) => {
+		const target = event.target as HTMLInputElement
+		const filter = target.value
+		console.log(filter)
 		table.forEach((row) => {
 			const layout = row.getAttribute('data-layout')
-			if (filter === 'All' || filter === layout) {
-				row.classList.remove('hidden')
-			} else {
-				row.classList.add('hidden')
-			}
+			console.log(layout)
+			console.log(!(filter === 'All' || filter === layout))
+			row.classList.toggle('hidden', !(filter === 'All' || filter === layout))
+			row.classList.toggle('table-row', filter === 'All' || filter === layout)
 		})
 	}
 
-	selector?.addEventListener('change', filterTable)
+	options?.forEach((option) => {
+		option.addEventListener('change', filterTable)
+	})
 </script>
 <script>
 	const infoFlat1 = document.getElementById('infoFlat1') as HTMLElement

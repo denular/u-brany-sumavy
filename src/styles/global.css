@@ -53,7 +53,7 @@
 }
 
 #Details div.table-header {
-	@apply pb-[1em] first:pl-2 last:pr-2 font-semibold
+	@apply pb-[1em] font-semibold
 }
 
 #Details div.table-cell:not(.table-header) {
