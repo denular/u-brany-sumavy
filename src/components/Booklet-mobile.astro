@@ -17,7 +17,7 @@ const { section, pages } = Astro.props
 >
 	<button
 		id="move-page-left"
-		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
+		class="absolute top-1/2 -translate-y-1/2 left-5 hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
 	>
 		<MoveLeft class="stroke-darkgreen stroke-1 p-1 size-8" />
 	</button>
@@ -27,7 +27,7 @@ const { section, pages } = Astro.props
 	>
 		{
 			pages.map((page) => (
-				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-clip">
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-hidden">
 					<img
 						src={page.src}
 						height={page.height}
@@ -36,7 +36,7 @@ const { section, pages } = Astro.props
 						class="h-full object-cover overflow-visible translate-x-1/2"
 					/>
 				</div>
-				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-clip">
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-hidden">
 					<img
 						src={page.src}
 						height={page.height}
@@ -47,14 +47,14 @@ const { section, pages } = Astro.props
 				</div>
 			))
 		}
-	</div>
-
+</div>
 	<button
 		id="move-page-right"
-		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
+		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min absolute top-1/2 -translate-y-1/2 right-5"
 	>
-		<MoveRight class="stroke-darkgreen stroke-1 p-1 size-8" />
+		<MoveRight class=" stroke-darkgreen stroke-1 p-1 size-8" />
 	</button>
+
 	<div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-2">
 		{
 			pages.map(() => (
