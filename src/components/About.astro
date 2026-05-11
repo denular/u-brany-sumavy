@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
-import buildRect from '#assets/Image_asset_764x535_2x.jpg'
-import buildSquare from '#assets/Image_asset_764x700_2x.jpg'
+import aboutFirst from '#assets/about_1.png'
+import aboutSecond from '#assets/about_2.jpg'
 import LinkButton from '#components/LinkButton.astro'
 import type { ArgumentsData } from '#types/arguments.ts'
 
@@ -18,7 +18,7 @@ const { argumentsData } = Astro.props
 		class="flex flex-col gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[55%_45%] items-center"
 	>
 		<Image
-			src={buildRect}
+			src={aboutFirst}
 			alt="Pohled na objekt"
 			class="max-h-[calc(80vh-144px)] aspect-video object-cover"
 		/>
@@ -39,7 +39,7 @@ const { argumentsData } = Astro.props
 			</p>
 		</div>
 		<Image
-			src={buildSquare}
+			src={aboutSecond}
 			alt="Pohled na objekt"
 			class="max-h-[calc(80vh-144px)] aspect-video object-cover"
 		/>

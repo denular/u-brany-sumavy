@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import buildRect from '#assets/Image_asset_764x535_2x.jpg'
+import directionsImg from '#assets/locality.jpg'
 import Booklet from '#components/Booklet.astro'
 import type { ArgumentsData } from '#types/arguments.ts'
 import LinkButton from './LinkButton.astro'
@@ -14,7 +14,7 @@ interface Props {
 const { argumentsData } = Astro.props
 
 const matches = import.meta.glob<{ default: Page }>(
-	'../assets/booklet-locality/*.png',
+	'../assets/booklet-locality/*.{jpeg,jpg,png,webp}',
 	{
 		eager: true,
 	},
@@ -29,7 +29,7 @@ const pages = Object.values(matches).map((page) => page.default)
 			class="flex flex-col gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[55%_45%] items-center"
 		>
 			<Image
-				src={buildRect}
+				src={directionsImg}
 				alt="Pohled na objekt"
 				class="max-h-[calc(80vh-144px)] aspect-video object-cover"
 			/>

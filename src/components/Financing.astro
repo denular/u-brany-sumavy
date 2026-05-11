@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import buildRect from '#assets/Image_asset_764x535_2x.jpg'
+import financingImg from '#assets/investing.jpg'
 import type { ArgumentsData } from '#types/arguments.ts'
 import Booklet from './Booklet.astro'
 import LinkButton from './LinkButton.astro'
@@ -14,7 +14,7 @@ interface Props {
 const { argumentsData } = Astro.props
 
 const matches = import.meta.glob<{ default: Page }>(
-	'../assets/booklet-financing/*.png',
+	'../assets/booklet-investing/*.{jpeg,jpg,png,webp}',
 	{
 		eager: true,
 	},
@@ -38,7 +38,7 @@ const pages = Object.values(matches).map((page) => page.default)
 			/>
 		</div>
 		<Image
-			src={buildRect}
+			src={financingImg}
 			alt="Pohled na objekt"
 			class="max-h-[calc(80vh-144px)] aspect-video object-cover"
 		/>
