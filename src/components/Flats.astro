@@ -199,8 +199,6 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 	const options = document.querySelectorAll('input[name=filter-layout]')
 	const table = document.querySelectorAll('#flatsTable a.flatRow')
 
-	options.forEach((option) => console.log(option))
-
 	const filterTable = (event: Event) => {
 		const target = event.target as HTMLInputElement
 		const filter = target.value

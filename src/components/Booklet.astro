@@ -1,35 +1,29 @@
 ---
+import type { Page } from '#types/booklet.ts'
 import { MoveLeft, MoveRight } from '@lucide/astro'
 
-type Page = {
-	src: string
-	width: number
-	height: number
-	format: string
+interface Props {
+	section: string
+	pages: Page[]
 }
 
-const matches = import.meta.glob<{ default: Page }>('../assets/booklet/*.png', {
-	eager: true,
-})
-const pages = Object.values(matches).map((page) => page.default)
-
-const { section } = Astro.props
+const { section, pages } = Astro.props
 ---
 
 <div
 	id=`${section}-booklet`
-	class="relative flex gap-5 items-center mx-5"
+	class="relative hidden lg:flex gap-5 items-center mx-5"
 	data-booklet
 >
 	<button
 		id="move-page-left"
-		class="hover:scale-120 duration-200 hover:cursor-pointer border border-black rounded-full size-min"
+		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
 	>
-		<MoveLeft class="stroke-black stroke-1 p-1 size-8" />
+		<MoveLeft class="stroke-darkgreen stroke-1 p-1 size-8" />
 	</button>
 	<div
 		id="booklet-carousel"
-		class="-z-10 max-h-[calc(90vh-144px)] aspect-297/210 w-full gap-10 flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+		class="-z-10 max-h-[calc(90vh-144px)] aspect-297/210 w-full gap-10 flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip border rounded-3xl border-green [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 	>
 		{
 			pages.map((page) => (
@@ -46,9 +40,9 @@ const { section } = Astro.props
 
 	<button
 		id="move-page-right"
-		class="hover:scale-120 duration-200 hover:cursor-pointer border border-black rounded-full size-min"
+		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
 	>
-		<MoveRight class="stroke-black stroke-1 p-1 size-8" />
+		<MoveRight class="stroke-darkgreen stroke-1 p-1 size-8" />
 	</button>
 	<div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-2">
 		{

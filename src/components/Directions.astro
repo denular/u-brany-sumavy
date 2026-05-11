@@ -4,12 +4,22 @@ import buildRect from '#assets/Image_asset_764x535_2x.jpg'
 import Booklet from '#components/Booklet.astro'
 import type { ArgumentsData } from '#types/arguments.ts'
 import LinkButton from './LinkButton.astro'
+import type { Page } from '#types/booklet.ts'
+import BookletMobile from './Booklet-mobile.astro'
 
 interface Props {
 	argumentsData: ArgumentsData
 }
 
 const { argumentsData } = Astro.props
+
+const matches = import.meta.glob<{ default: Page }>(
+	'../assets/booklet-locality/*.png',
+	{
+		eager: true,
+	},
+)
+const pages = Object.values(matches).map((page) => page.default)
 ---
 
 <section id="Directions" class="mt-25 flex flex-col gap-25 items-center">
@@ -37,5 +47,6 @@ const { argumentsData } = Astro.props
 		</div>
 	</div>
 	<hr class="w-[80vw] max-w-lg border-green" />
-	<Booklet section="directions" />
+	<Booklet section="directions" {pages} />
+	<BookletMobile section="directions" {pages} />
 </section>

@@ -1,0 +1,6 @@
+export interface Page {
+	src: string
+	width: number
+	height: number
+	format: string
+}

@@ -1,0 +1,156 @@
+---
+import type { Page } from '#types/booklet.ts'
+import { MoveLeft, MoveRight } from '@lucide/astro'
+
+interface Props {
+	section: string
+	pages: Page[]
+}
+
+const { section, pages } = Astro.props
+---
+
+<div
+	id=`${section}-booklet`
+	class="relative flex lg:hidden gap-5 items-center mx-5"
+	data-booklet
+>
+	<button
+		id="move-page-left"
+		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
+	>
+		<MoveLeft class="stroke-darkgreen stroke-1 p-1 size-8" />
+	</button>
+	<div
+		id="booklet-carousel"
+		class="-z-10 max-h-[calc(90vh-144px)] aspect-210/297 w-full gap-10 flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip border rounded-3xl border-green [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+	>
+		{
+			pages.map((page) => (
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-clip">
+					<img
+						src={page.src}
+						height={page.height}
+						width={page.width}
+						alt="page"
+						class="h-full object-cover overflow-visible translate-x-1/2"
+					/>
+				</div>
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-clip">
+					<img
+						src={page.src}
+						height={page.height}
+						width={page.width}
+						alt="page"
+						class="h-full object-cover overflow-visible -translate-x-1/2"
+					/>
+				</div>
+			))
+		}
+	</div>
+
+	<button
+		id="move-page-right"
+		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
+	>
+		<MoveRight class="stroke-darkgreen stroke-1 p-1 size-8" />
+	</button>
+	<div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-2">
+		{
+			pages.map(() => (
+				<button class="booklet-dot hover:scale-120 hover:cursor-pointer duration-200">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						class="booklet-dot-marker size-2.5 fill-white stroke-darkgreen stroke-2"
+					>
+						<circle r="10" cx="12" cy="12" />
+					</svg>
+				</button>
+				<button class="booklet-dot hover:scale-120 hover:cursor-pointer duration-200">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						class="booklet-dot-marker size-2.5 fill-white stroke-darkgreen stroke-2"
+					>
+						<circle r="10" cx="12" cy="12" />
+					</svg>
+				</button>
+			))
+		}
+	</div>
+</div>
+
+<script>
+	const init_booklet = (root: Element) => {
+		const dots = [
+			...root.getElementsByClassName('booklet-dot'),
+		] as HTMLElement[]
+		const dotsMarkers = [
+			...root.getElementsByClassName('booklet-dot-marker'),
+		] as HTMLElement[]
+		const pages = [
+			...root.getElementsByClassName('booklet-page'),
+		] as HTMLElement[]
+		const carousel = root.querySelector('#booklet-carousel') as HTMLElement
+		const moveLeft = root.querySelector('#move-page-left') as HTMLElement
+		const moveRigth = root.querySelector('#move-page-right') as HTMLElement
+
+		const updateDots = () => {
+			const center =
+				carousel.offsetLeft + carousel?.scrollLeft + carousel?.clientWidth / 2
+
+			let activeIndex = 0
+			let closestDistance = Infinity
+
+			pages.forEach((page, index) => {
+				const pageCenter = page.offsetLeft + page.clientWidth / 2
+				const distance = Math.abs(center - pageCenter)
+
+				if (distance < closestDistance) {
+					closestDistance = distance
+					activeIndex = index
+				}
+			})
+
+			dotsMarkers.forEach((dot, index) => {
+				dot.classList.toggle('fill-green', index === activeIndex)
+				dot.classList.toggle('fill-white', index !== activeIndex)
+			})
+		}
+
+		carousel?.addEventListener('scroll', () => {
+			requestAnimationFrame(() => updateDots())
+		})
+
+		dots.forEach((dot, index) => {
+			dot.addEventListener('click', () => {
+				pages[index]?.scrollIntoView({ block: 'nearest', inline: 'center' })
+			})
+		})
+
+		moveLeft?.addEventListener('click', () => {
+			if (pages[0] !== undefined) {
+				carousel.scrollLeft -= pages[0].clientWidth
+			}
+		})
+
+		moveRigth?.addEventListener('click', () => {
+			if (pages[0] !== undefined) {
+				carousel.scrollLeft += pages[0].clientWidth
+			}
+		})
+
+		pages.forEach((page) => {
+			page.addEventListener('click', () => {
+				page.scrollIntoView({ block: 'nearest', inline: 'center' })
+			})
+		})
+
+		updateDots()
+	}
+
+	document.querySelectorAll('[data-booklet]').forEach((element) => {
+		init_booklet(element)
+	})
+</script>
