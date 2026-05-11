@@ -34,28 +34,4 @@ export const server = {
 			return data
 		},
 	}),
-	newsletter: defineAction({
-		accept: 'form',
-		input: z.object({
-			email: z.email(),
-		}),
-		handler: async (input) => {
-			const { data, error } = await resend.emails.send({
-				from: FROM_EMAIL,
-				to: TO_EMAIL,
-				subject: 'Newsletter',
-				html: `<p>Email: <strong>${input.email}</strong></p>
-			<p><strong>PŘIDAT DO NEWSLETTERU!</strong></p>`,
-			})
-
-			if (error) {
-				throw new ActionError({
-					code: 'BAD_REQUEST',
-					message: error.message,
-				})
-			}
-
-			return data
-		},
-	}),
 }

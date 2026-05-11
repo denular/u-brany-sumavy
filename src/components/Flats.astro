@@ -1,12 +1,8 @@
 ---
-import { Image } from 'astro:assets'
-import floor_1pp from '#assets/build/building_front_filled_1pp.svg'
-import floor_1np_2np from '#assets/build/building_front_filled_1np_2np.svg'
 import { flats } from '#data/flats.ts'
 import Building from '#data/building.astro'
 import FloorPlanPP from '#data/floorPlanPP.astro'
 import FloorPlanNP from '#data/floorPlanNP.astro'
-import LinkButton from './LinkButton.astro'
 
 const filterOptions = ['1+kk', '2+kk', '4+kk']
 ---
@@ -177,15 +173,8 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 						<span>
 							{flat.area} m<sup>2</sup>
 						</span>
-						{/* <span>{flat.outside}</span> */}
 					</div>
 					<span>{flat.floor}</span>
-					{/* <span class="text-sm font-semibold">{flat.price}</span> */}
-					{/* <LinkButton
-						text="Více informací"
-						href={`/flats/${flat.id}`}
-						classList="hover-dark text-xs"
-					/> */}
 					<a href={`/flats/${flat.id}`} class="underline">
 						Více informací
 					</a>
@@ -271,7 +260,7 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		flat12.classList.remove('opacity-0')
 	}
 
-	const previewFlatsP = (selFlat) => {
+	const previewFlatsP = (selFlat: HTMLElement) => {
 		flat9.classList.add('opacity-20')
 		flat10.classList.add('opacity-20')
 		flat11.classList.add('opacity-20')
@@ -279,7 +268,7 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		selFlat.classList.remove('opacity-20')
 	}
 
-	const hidePreviewFlatsP = (selFlat) => {
+	const hidePreviewFlatsP = (selFlat: HTMLElement) => {
 		flat9.classList.remove('opacity-20')
 		flat10.classList.remove('opacity-20')
 		flat11.classList.remove('opacity-20')
@@ -300,7 +289,11 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		hidePreviewFlatsP(selFlatPP)
 	})
 
-	const setupListenersPP = (flat, oflat, infoFlat) => {
+	const setupListenersPP = (
+		flat: HTMLElement,
+		oflat: HTMLElement,
+		infoFlat: HTMLElement,
+	) => {
 		oflat.addEventListener('click', () => {
 			selFlatPP.classList.add('opacity-20')
 			flat.classList.remove('opacity-20')
@@ -311,10 +304,10 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		})
 	}
 
-	setupListenersPP(flat9, oflat9, infoFlat9)
-	setupListenersPP(flat10, oflat10, infoFlat10)
-	setupListenersPP(flat11, oflat11, infoFlat11)
-	setupListenersPP(flat12, oflat12, infoFlat12)
+	setupListenersPP(flat9, oFlat9, infoFlat9)
+	setupListenersPP(flat10, oFlat10, infoFlat10)
+	setupListenersPP(flat11, oFlat11, infoFlat11)
+	setupListenersPP(flat12, oFlat12, infoFlat12)
 
 	const floorPlanNP = document.getElementById('floorPlanNP') as HTMLElement
 
@@ -355,7 +348,7 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		flat8.classList.remove('opacity-0')
 	}
 
-	const previewFlatsN = (selFlat) => {
+	const previewFlatsN = (selFlat: HTMLElement) => {
 		flat1.classList.add('opacity-20')
 		flat2.classList.add('opacity-20')
 		flat3.classList.add('opacity-20')
@@ -367,7 +360,7 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		selFlat.classList.remove('opacity-20')
 	}
 
-	const hidePreviewFlatsN = (selFlat) => {
+	const hidePreviewFlatsN = (selFlat: HTMLElement) => {
 		flat1.classList.remove('opacity-20')
 		flat2.classList.remove('opacity-20')
 		flat3.classList.remove('opacity-20')
@@ -396,7 +389,11 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		hidePreviewFlatsN(selFlatNP)
 	})
 
-	const setupListenersNP = (flat, oflat, infoFlat) => {
+	const setupListenersNP = (
+		flat: HTMLElement,
+		oflat: HTMLElement,
+		infoFlat: HTMLElement,
+	) => {
 		oflat.addEventListener('click', () => {
 			selFlatNP.classList.add('opacity-20')
 			flat.classList.remove('opacity-20')
@@ -407,31 +404,26 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		})
 	}
 
-	setupListenersNP(flat1, oflat1, infoFlat1)
-	setupListenersNP(flat2, oflat2, infoFlat2)
-	setupListenersNP(flat3, oflat3, infoFlat3)
-	setupListenersNP(flat4, oflat4, infoFlat4)
-	setupListenersNP(flat5, oflat5, infoFlat5)
-	setupListenersNP(flat6, oflat6, infoFlat6)
-	setupListenersNP(flat7, oflat7, infoFlat7)
-	setupListenersNP(flat8, oflat8, infoFlat8)
+	setupListenersNP(flat1, oFlat1, infoFlat1)
+	setupListenersNP(flat2, oFlat2, infoFlat2)
+	setupListenersNP(flat3, oFlat3, infoFlat3)
+	setupListenersNP(flat4, oFlat4, infoFlat4)
+	setupListenersNP(flat5, oFlat5, infoFlat5)
+	setupListenersNP(flat6, oFlat6, infoFlat6)
+	setupListenersNP(flat7, oFlat7, infoFlat7)
+	setupListenersNP(flat8, oFlat8, infoFlat8)
 
 	const groupPP = document.getElementById('pp') as HTMLElement
 	const oGroupPP = document.getElementById('opp') as HTMLElement
 	const groupNP = document.getElementById('np') as HTMLElement
 	const oGroupNP = document.getElementById('onp') as HTMLElement
 
-	const radioPP = document.getElementById('radioPP') as HTMLElement
-	const radioNP = document.getElementById('radioNP') as HTMLElement
+	const radioPP = document.getElementById('radioPP') as HTMLInputElement
+	const radioNP = document.getElementById('radioNP') as HTMLInputElement
 
 	const building = document.getElementById('building') as HTMLElement
 
 	let selFloor: HTMLElement = groupNP
-
-	const clearP = () => {
-		groupPP.classList.add('opacity-0')
-		groupNP.classList.add('opacity-0')
-	}
 
 	const showPP = () => {
 		floorPlanNP.classList.add('hidden')
