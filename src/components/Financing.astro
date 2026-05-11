@@ -43,6 +43,8 @@ const pages = Object.values(matches).map((page) => page.default)
 			class="max-h-[calc(80vh-144px)] w-full aspect-video object-cover"
 		/>
 	</div>
-	<Booklet section="financing" {pages} />
-	<BookletMobile section="financing" {pages} />
+	<div id="financing-booklet">
+		<Booklet {pages} />
+		<BookletMobile {pages} />
+	</div>
 </section>

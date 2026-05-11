@@ -40,13 +40,15 @@ const pages = Object.values(matches).map((page) => page.default)
 				</p>
 				<LinkButton
 					text="Více informací"
-					href="#directions-booklet"
+					href="#locality-booklet"
 					classList="hover-dark text-sm"
 				/>
 			</div>
 		</div>
 	</div>
 	<hr class="w-[80vw] max-w-lg border-green" />
-	<Booklet section="directions" {pages} />
-	<BookletMobile section="directions" {pages} />
+	<div id="locality-booklet">
+		<Booklet {pages} />
+		<BookletMobile {pages} />
+	</div>
 </section>

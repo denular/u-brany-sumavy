@@ -3,18 +3,13 @@ import type { Page } from '#types/booklet.ts'
 import { MoveLeft, MoveRight } from '@lucide/astro'
 
 interface Props {
-	section: string
 	pages: Page[]
 }
 
-const { section, pages } = Astro.props
+const { pages } = Astro.props
 ---
 
-<div
-	id=`${section}-booklet`
-	class="relative hidden lg:flex gap-5 items-center mx-5"
-	data-booklet
->
+<div class="relative hidden lg:flex gap-5 items-center mx-5" data-booklet>
 	<button
 		id="move-page-left"
 		class="hover:scale-120 duration-200 hover:cursor-pointer border border-darkgreen rounded-full size-min"
