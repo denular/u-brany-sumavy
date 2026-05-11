@@ -33,8 +33,8 @@ const { section, pages } = Astro.props
 						height={page.height}
 						width={page.width}
 						alt="page"
-						class="h-full object-cover overflow-visible translate-x-1/2"
-					/>
+						class="h-full w-full object-cover object-left"
+						/>
 				</div>
 				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-hidden">
 					<img
@@ -42,7 +42,7 @@ const { section, pages } = Astro.props
 						height={page.height}
 						width={page.width}
 						alt="page"
-						class="h-full object-cover overflow-visible -translate-x-1/2"
+						class="h-full w-full object-cover object-right"
 					/>
 				</div>
 			))
