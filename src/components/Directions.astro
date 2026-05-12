@@ -34,7 +34,7 @@ const pages = Object.values(matches).map((page) => page.default)
 				class="max-h-[calc(80vh-144px)] w-full aspect-video object-cover"
 			/>
 			<div class="lg:px-[25%] flex flex-col text-justify items-center">
-				<h3 class="text-left">VAŠE MÍSTO NA ŠUMAVĚ</h3>
+				<h3 class="text-left">{argumentsData.locality.title}</h3>
 				<p class="mb-5">
 					{argumentsData.locality.text}
 				</p>

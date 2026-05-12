@@ -23,7 +23,7 @@ const { argumentsData } = Astro.props
 			class="max-h-[calc(80vh-144px)] aspect-video object-cover"
 		/>
 		<div class="lg:px-[20%] text-justify">
-			<h3 class="text-left">VAŠE MÍSTO NA ŠUMAVĚ</h3>
+			<h3 class="text-left">{argumentsData.about.title}</h3>
 			<p>
 				{argumentsData.about.text}
 			</p>
@@ -33,7 +33,7 @@ const { argumentsData } = Astro.props
 		class="text-justify flex flex-col-reverse gap-5 lg:grid lg:gap-0 grid-flow-col grid-cols-[45%_55%] items-center"
 	>
 		<div class="lg:px-[20%]">
-			<h3 class="text-left">KOMFORTNÍ BYDLENÍ V PŘÍRODĚ</h3>
+			<h3 class="text-left">{argumentsData.aboutLocality.title}</h3>
 			<p>
 				{argumentsData.aboutLocality.text}
 			</p>

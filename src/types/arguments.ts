@@ -1,4 +1,5 @@
 export interface ArgumentContent {
+	title: string
 	text: string
 }
 

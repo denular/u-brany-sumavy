@@ -1,127 +1,153 @@
 ---
 import { CircleCheck, CircleX } from '@lucide/astro'
+import contacts from '#data/contacts.json'
 ---
 
 <section id="Contact" class="mx-[4vw] mt-25 flex flex-col gap-14 items-center">
 	<h1 class="text-center w-min md:w-max">KONTAKTUJTE NÁS</h1>
-	<form
-		id="contact-form"
-		method="POST"
-		class="w-[80vw] max-w-150 text-darkgreen flex flex-col gap-[2em] items-center"
+	<div
+		class="grid grid-cols-1 items-center place-items-center gap-y-10 md:grid-cols-2 md:gap-y-0"
 	>
-		<fieldset class="flex flex-col w-full items-center gap-[3em] text-lg">
-			<label>
-				<!-- Jméno -->
-				<input
-					required
-					name="firstName"
-					type="text"
-					placeholder="Jméno"
-					class="px-[0.4em] placeholder-green"
-				/>
-			</label>
-			<label>
-				<!-- Příjmení -->
-				<input
-					required
-					name="surName"
-					type="text"
-					placeholder="Příjmení"
-					class="px-[0.4em] placeholder-green"
-				/>
-			</label>
-			<label>
-				<!-- Email -->
-				<input
-					required
-					name="email"
-					type="email"
-					placeholder="Email"
-					class="px-[0.4em] placeholder-green"
-				/>
-			</label>
-			<label>
-				<!-- Zpráva -->
-				<textarea
-					required
-					name="message"
-					rows="1"
-					class="px-[0.4em] py-[0.2em] placeholder-green"
-					placeholder="Zpráva"></textarea>
-			</label>
-		</fieldset>
-		<label class="grid grid-flow-col auto-cols-auto gap-6 items-center text-sm">
-			<input
-				checked
-				type="checkbox"
-				required
-				class="size-5 accent-black/50 hover:accent-green"
-			/>
-			<details class="max-w-120 text-center">
-				<summary class="list-none">
-					*Souhlasím se zpracováním údajů v souladu s nařízením GDPR.
-					<span class="font-semibold">Více</span>
-				</summary>
-				<p>
-					Souhlasím, aby PSN s.r.o. zpracovávala mé osobní údaje, a to v rozsahu
-					identifikačních údajů a kontaktních údajů. Souhlas se zpracováním
-					osobních údajů uděluji k účelům péče o mě jakožto klienta správce a
-					nabízení služeb a produktů správce. Potvrzuji seznámení s obsahem
-					Sdělení klientům správce s poučením o způsobu zpracování mých osobních
-					údajů, o mých právech, o možnosti odvolat tento souhlas pro jednotlivé
-					účely a o tom, ře aktuální znění Sdělení kleintovi mohu kdykoliv
-					získat na webových stránkách správce či v jeho sídle. Celé znění
-					Sdělení klientům si můžete přešíst na odkazu <a
-						class="font-semibold hover:underline">ZDE</a
-					>.
-				</p>
-			</details>
-		</label>
-		<button
-			type="submit"
-			class="border rounded-full w-max h-[1em] py-[1em] px-[1.5em] font-semibold text-darkgreen flex items-center hover-dark hover:cursor-pointer"
-			>Odeslat</button
+		<form
+			id="contact-form"
+			method="POST"
+			class="w-[80%] max-w-150 text-darkgreen flex flex-col gap-[2em] items-center"
 		>
-	</form>
-	<div
-		id="successMessage"
-		class="fixed bg-green rounded-full bottom-0 right-0 m-5 py-2 px-4 hidden"
-	>
-		<div class="flex gap-2 font-semibold text-white">
-			<CircleCheck />
-			<span>Kontakt úspěšně odeslán</span>
+			<fieldset class="flex flex-col w-full items-center gap-[3em] text-base">
+				<label>
+					<!-- Jméno -->
+					<input
+						required
+						name="firstName"
+						type="text"
+						placeholder="Jméno"
+						class="px-[0.4em] placeholder-green"
+					/>
+				</label>
+				<label>
+					<!-- Příjmení -->
+					<input
+						required
+						name="surName"
+						type="text"
+						placeholder="Příjmení"
+						class="px-[0.4em] placeholder-green"
+					/>
+				</label>
+				<label>
+					<!-- Email -->
+					<input
+						required
+						name="email"
+						type="email"
+						placeholder="Email"
+						class="px-[0.4em] placeholder-green"
+					/>
+				</label>
+				<label>
+					<!-- Zpráva -->
+					<textarea
+						required
+						name="message"
+						rows="1"
+						class="px-[0.4em] py-[0.2em] placeholder-green"
+						placeholder="Zpráva"></textarea>
+				</label>
+			</fieldset>
+			<label
+				class="grid grid-flow-col auto-cols-auto gap-6 items-center text-sm"
+			>
+				<input
+					checked
+					type="checkbox"
+					required
+					class="size-5 accent-black/50 hover:accent-green"
+				/>
+				<details class="max-w-120 text-center">
+					<summary class="list-none">
+						*Souhlasím se zpracováním údajů v souladu s nařízením GDPR.
+						<span class="font-semibold">Více</span>
+					</summary>
+					<p>
+						Souhlasím, aby PSN s.r.o. zpracovávala mé osobní údaje, a to v
+						rozsahu identifikačních údajů a kontaktních údajů. Souhlas se
+						zpracováním osobních údajů uděluji k účelům péče o mě jakožto
+						klienta správce a nabízení služeb a produktů správce. Potvrzuji
+						seznámení s obsahem Sdělení klientům správce s poučením o způsobu
+						zpracování mých osobních údajů, o mých právech, o možnosti odvolat
+						tento souhlas pro jednotlivé účely a o tom, ře aktuální znění
+						Sdělení kleintovi mohu kdykoliv získat na webových stránkách správce
+						či v jeho sídle. Celé znění Sdělení klientům si můžete přešíst na
+						odkazu <a class="font-semibold hover:underline">ZDE</a>.
+					</p>
+				</details>
+			</label>
+			<button
+				type="submit"
+				class="border rounded-full w-max h-[1em] py-[1em] px-[1.5em] font-semibold text-darkgreen flex items-center hover-dark hover:cursor-pointer"
+				>Odeslat</button
+			>
+		</form>
+		<div
+			class="text-center grid grid-cols-[max-content_1fr] gap-x-[1em] gap-y-[0.5em]"
+		>
+			<div class="col-span-2 grid grid-cols-subgrid">
+				<!-- <span class="col-span-2">KONTAKTY</span> -->
+				<span class="font-semibold text-green place-self-end">Tel:</span>
+				<a
+					href={`tel:${contacts.tel.replace(/\s+/g, '')}`}
+					class="place-self-start"
+				>
+					{contacts.tel}
+				</a>
+			</div>
+			<div class="col-span-2 grid grid-cols-subgrid">
+				<span class="font-semibold text-green place-self-end">Email:</span>
+				<a href={`mailto:${contacts.email}`} class="place-self-start">
+					{contacts.email}
+				</a>
+			</div>
 		</div>
 	</div>
-	<div
-		id="errorMessage"
-		class="fixed bg-[#ff5c5c] rounded-full bottom-0 right-0 m-5 py-2 px-4 hidden"
-	>
-		<div class="flex gap-2 font-semibold text-white">
-			<CircleX />
-			<span>Něco se pokazilo, zkuste to prosím znovu</span>
-		</div>
-	</div>
-
-	<script>
-		import { actions } from 'astro:actions'
-
-		const contactForm = document.getElementById('contact-form')
-		const successMessage = document.getElementById('successMessage')
-		const errorMessage = document.getElementById('errorMessage')
-
-		contactForm.addEventListener('submit', async (event: Event) => {
-			event.preventDefault()
-			const form = event.target
-			const formData = new FormData(form)
-			const { data, error } = await actions.send(formData)
-			if (!error) {
-				form.reset()
-				successMessage?.classList.remove('hidden')
-				setTimeout(() => successMessage?.classList.add('hidden'), 4000)
-			} else {
-				errorMessage?.classList.remove('hidden')
-				setTimeout(() => errorMessage?.classList.add('hidden'), 4000)
-			}
-		})
-	</script>
 </section>
+<div
+	id="successMessage"
+	class="fixed bg-green rounded-full bottom-0 right-0 m-5 py-2 px-4 hidden"
+>
+	<div class="flex gap-2 font-semibold text-white">
+		<CircleCheck />
+		<span>Kontakt úspěšně odeslán</span>
+	</div>
+</div>
+<div
+	id="errorMessage"
+	class="fixed bg-[#ff5c5c] rounded-full bottom-0 right-0 m-5 py-2 px-4 hidden"
+>
+	<div class="flex gap-2 font-semibold text-white">
+		<CircleX />
+		<span>Něco se pokazilo, zkuste to prosím znovu</span>
+	</div>
+</div>
+
+<script>
+	import { actions } from 'astro:actions'
+
+	const contactForm = document.getElementById('contact-form') as HTMLElement
+	const successMessage = document.getElementById('successMessage')
+	const errorMessage = document.getElementById('errorMessage')
+
+	contactForm.addEventListener('submit', async (event: Event) => {
+		event.preventDefault()
+		const form = event.target as HTMLFormElement
+		const formData = new FormData(form)
+		const { data, error } = await actions.send(formData)
+		if (!error) {
+			form.reset()
+			successMessage?.classList.remove('hidden')
+			setTimeout(() => successMessage?.classList.add('hidden'), 4000)
+		} else {
+			errorMessage?.classList.remove('hidden')
+			setTimeout(() => errorMessage?.classList.add('hidden'), 4000)
+		}
+	})
+</script>
