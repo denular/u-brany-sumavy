@@ -60,7 +60,7 @@
 	@apply py-[2em]
 }
 
-#Details a.table-row:hover div.table-cell:not(.table-header) {
+#Details a.table-row-hover:hover div.table-cell:not(.table-header) {
 	@apply bg-gray border-y border-green transition duration-150
 }
 

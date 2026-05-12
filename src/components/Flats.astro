@@ -1,10 +1,10 @@
 ---
 import { flats } from '#data/flats.ts'
-import Building from '#data/building.astro'
-import FloorPlanPP from '#data/floorPlanPP.astro'
-import FloorPlanNP from '#data/floorPlanNP.astro'
+import Building from '#components/floorplans/building.astro'
+import FloorPlanPP from '#components/floorplans/floorPlanPP.astro'
+import FloorPlanNP from '#components/floorplans/floorPlanNP.astro'
 
-const filterOptions = ['1+kk', '2+kk', '4+kk']
+const filterOptions = ['2+kk', '3+kk', '4+kk']
 ---
 
 <section id="Flats" class="mx-[4vw] mt-25 flex flex-col items-center gap-10">
@@ -53,17 +53,23 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 						id={'infoFlat'.concat(flat.id.toString())}
 						class={flat.id === 1 ? '' : 'hidden'}
 					>
-						<a href={`flats/${flat.id}`} class="flex flex-col gap-10">
-							<h4 class="text-center text-green text-5xl font-light">
+						<div class="flex flex-col gap-5">
+							<h4 class="text-center text-green text-4xl font-light">
 								Apartmán č. {flat.id}
 							</h4>
-							<div class="text-center text-green text-lg font-semibold">
-								<p>
-									{flat.layout} {flat.area}m<sup>2</sup>
-								</p>
-								<p>{flat.price}</p>
+							<div class="text-center text-green text-lg font-semibold flex flex-col gap-1">
+								<div class="flex justify-around">
+									<span>{flat.layout}</span>{' '}
+									<span>
+										{flat.area}m<sup>2</sup>
+									</span>
+								</div>
+								<div>{flat.price}</div>
+								<a href={`/flats/${flat.id}`} class="underline">
+									Více informací
+								</a>
 							</div>
-						</a>
+						</div>
 					</div>
 				))
 			}
@@ -142,11 +148,14 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 			{
 				flats.map((flat) => (
 					<a
-						class="table-row flatRow"
+						class={
+							flat.price === 'Prodáno' || flat.price === 'Rezervováno'
+								? 'table-row table-row-hover flatRow text-green/50'
+								: 'table-row table-row-hover flatRow text-green'
+						}
 						data-layout={flat.layout}
 						href={`flats/${flat.id}`}
 					>
-						{/* <div class="table-row flatRow " > */}
 						<div class="table-cell font-bold">{flat.id}</div>
 						<div class="table-cell">{flat.floor}</div>
 						<div class="table-cell">{flat.layout}</div>
@@ -156,7 +165,6 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 						<div class="table-cell">{flat.cellar}</div>
 						<div class="table-cell">{flat.parking}</div>
 						<div class="table-cell">{flat.price}</div>
-						{/* </div> */}
 					</a>
 				))
 			}
@@ -166,7 +174,13 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 	<div class="text-green flex flex-col w-[80vw] items-center lg:hidden">
 		{
 			flats.map((flat) => (
-				<div class="border-b border-darkgreen py-3.5 w-full flex flex-col gap-2 items-center hover:bg-gray">
+				<div
+					class={
+						flat.price === 'Prodáno' || flat.price === 'Rezervováno'
+							? 'border-b border-darkgreen py-3.5 w-full flex flex-col gap-2 items-center hover:bg-gray'
+							: 'border-b border-darkgreen py-3.5 w-full flex flex-col gap-2 items-center hover:bg-gray'
+					}
+				>
 					<span class="font-semibold">Apartmán č. {flat.id}</span>
 					<div class="flex w-full justify-around">
 						<span>{flat.layout}</span>
@@ -174,8 +188,9 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 							{flat.area} m<sup>2</sup>
 						</span>
 					</div>
-					<span>{flat.floor}</span>
-					<a href={`/flats/${flat.id}`} class="underline">
+					<div>{flat.floor}</div>
+					<div>{flat.price}</div>
+					<a href={`/flats/${flat.id}`} class="underline hover:cursor-pointer">
 						Více informací
 					</a>
 				</div>
@@ -470,6 +485,7 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		groupPP.classList.remove('opacity-20')
 		groupNP.classList.add('opacity-20')
 		showPP()
+		showSel()
 	})
 	radioPP.addEventListener('change', () => {
 		selFloor = groupPP
@@ -485,6 +501,7 @@ const filterOptions = ['1+kk', '2+kk', '4+kk']
 		groupNP.classList.remove('opacity-20')
 		groupPP.classList.add('opacity-20')
 		showNP()
+		showSel()
 	})
 	radioNP.addEventListener('change', () => {
 		selFloor = groupNP
