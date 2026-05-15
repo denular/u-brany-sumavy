@@ -3,10 +3,10 @@ import type { Page } from '#types/booklet.ts'
 import { MoveLeft, MoveRight } from '@lucide/astro'
 
 interface Props {
-	pages: Page[]
+	mobilePages: Page[]
 }
 
-const { pages } = Astro.props
+const { mobilePages } = Astro.props
 ---
 
 <div
@@ -21,10 +21,10 @@ const { pages } = Astro.props
 	</button>
 	<div
 		id="booklet-carousel"
-		class="-z-10 max-h-[calc(90vh-144px)] aspect-210/297 w-full gap-10 flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip border rounded-3xl border-green [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+		class="max-h-[calc(90vh-144px)] aspect-210/297 w-full gap-10 flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip border rounded-3xl border-green [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 	>
 		{
-			pages.map((page) => (
+			mobilePages.map((page) => (
 				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-hidden">
 					<img
 						src={page.src}
@@ -55,7 +55,7 @@ const { pages } = Astro.props
 
 	<div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-2">
 		{
-			pages.map(() => (
+			mobilePages.map(() => (
 				<button class="booklet-dot hover:scale-120 hover:cursor-pointer duration-200">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

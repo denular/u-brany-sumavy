@@ -20,6 +20,7 @@ const matches = import.meta.glob<{ default: Page }>(
 	},
 )
 const pages = Object.values(matches).map((page) => page.default)
+const mobilePages = pages.filter((page) => !page.src.includes('noMob'))
 ---
 
 <section id="Financing" class="mt-25 flex flex-col gap-20 items-center">
@@ -45,6 +46,6 @@ const pages = Object.values(matches).map((page) => page.default)
 	</div>
 	<div id="financing-booklet">
 		<Booklet {pages} />
-		<BookletMobile {pages} />
+		<BookletMobile {mobilePages} />
 	</div>
 </section>
