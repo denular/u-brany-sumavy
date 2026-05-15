@@ -25,7 +25,7 @@ const { mobilePages } = Astro.props
 	>
 		{
 			mobilePages.map((page) => (
-				<div class="booklet-page lg:flex shrink-0 w-full snap-center snap-normal overflow-hidden">
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center snap-always overflow-hidden">
 					<img
 						src={page.src}
 						height={page.height}
@@ -34,7 +34,7 @@ const { mobilePages } = Astro.props
 						class="h-full w-full object-cover object-left"
 						/>
 				</div>
-				<div class="booklet-page lg:flex shrink-0 w-full snap-center snap-normal overflow-hidden">
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center snap-always overflow-hidden">
 					<img
 						src={page.src}
 						height={page.height}
