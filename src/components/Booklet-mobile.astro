@@ -21,11 +21,11 @@ const { mobilePages } = Astro.props
 	</button>
 	<div
 		id="booklet-carousel"
-		class="max-h-[calc(90vh-144px)] aspect-210/297 w-full gap-10 flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip border rounded-3xl border-green [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+		class="max-h-[calc(90vh-144px)] aspect-210/297 w-full flex snap-x snap-mandatory overflow-x-scroll scroll-smooth overflow-y-clip border rounded-3xl border-green [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 	>
 		{
 			mobilePages.map((page) => (
-				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-hidden">
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center snap-always overflow-hidden">
 					<img
 						src={page.src}
 						height={page.height}
@@ -34,7 +34,7 @@ const { mobilePages } = Astro.props
 						class="h-full w-full object-cover object-left"
 						/>
 				</div>
-				<div class="booklet-page lg:flex shrink-0 w-full snap-center overflow-hidden">
+				<div class="booklet-page lg:flex shrink-0 w-full snap-center snap-always overflow-hidden">
 					<img
 						src={page.src}
 						height={page.height}
